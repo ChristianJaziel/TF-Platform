@@ -30,9 +30,10 @@ app.use((req, res, next)=>{
 
 //Rutas
 app.use(require('./routes/index.js'));
-
+app.use(require('./routes/authentication.js'));
+app.use('/links',require('./routes/links.js'));
 //Publico
-
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Corriendo servidor
 app.listen(app.get('port'), ()=>{
