@@ -11,9 +11,10 @@ app.set('port', process.env.PORT || 3550);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs', engine({
     defaultLayout: "main",
-    layoutsDir: path.join(__dirname, app.get('views'), 'layouts'),
-     extname: '.hbs',
-     helpers: require('./lib/handlebars.js')
+    layoutsDir: path.join(app.get('views'), 'layouts'),
+    partialDir: path.join(app.get('views'), 'partials'),
+    extname: '.hbs',
+    helpers: require('./lib/handlebars.js')
 }));
 app.set('view engine', 'hbs');
 
@@ -30,6 +31,7 @@ app.use((req, res, next)=>{
 
 //Rutas
 app.use(require('./routes/index.js'));
+app.use('/registropersonas',require('./routes/registropersonas.js'));
 app.use(require('./routes/authentication.js'));
 app.use('/links',require('./routes/links.js'));
 //Publico
