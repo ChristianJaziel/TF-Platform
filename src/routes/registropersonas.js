@@ -2,10 +2,6 @@ const express = require('express');
 const router =express.Router();
 const db = require('../database');
 
-router.get('/',(req, res)=>{
-    res.send("Holas");
-});
-
 router.get('/add',(req, res)=>{
     res.render('personas/add');
 });
@@ -22,7 +18,13 @@ router.post('/add',async (req, res)=>{
         num_tel
     };
     await db.query('INSERT INTO personas SET ?', [newRegistro]);
-    res.send("Recibido");
+    res.redirect('/registropersonas');
+});
+
+router.get('/',async (req, res)=>{
+   const personas = await db.query('SELECT * FROM personas');
+   console.log(personas);
+   res.render('personas/list', {personas : personas});
 });
 
 module.exports= router;

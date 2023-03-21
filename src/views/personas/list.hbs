@@ -1,0 +1,39 @@
+<div class="container p-4">
+    <div class="title text-center m-4 p-4"><h1>Personas<strong> Torre Fuerte</strong></h1></div>
+    <div class="row">
+        {{#each personas}}
+            <div class="row justify-content-md-center">
+                <div class="card text-center">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido Paterno</th>
+                            <th scope="col">Apellido Materno</th>
+                            <th scope="col">Calle</th>
+                            <th scope="col">Num. Casa</th>
+                            <th scope="col">Colonia</th>
+                            <th scope="col">Teléfono</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <th scope="row">{{id_persona}}</th>
+                            <td>{{nombres_persona}}</td>
+                            <td>{{a_paterno}}</td>
+                            <td>{{a_paterno}}</td>
+                            <td>{{calle}}</td>
+                            <td>{{numero_casa}}</td>
+                            <td>{{colonia}}</td>
+                            <td>{{num_tel}}</td>
+                            <td><a href="" class="btn btn-danger">Borrar</a></td>
+                            <td><a href="" class="btn btn-secondary">Editar</a></td>
+                            </tr>
+                        </tbody>
+                        </table>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
