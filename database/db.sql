@@ -11,7 +11,7 @@ create table Personas(
     calle varchar(150) not null,
     numero_casa varchar(10) not null,
     colonia varchar(100) not null,
-    num_tel int not null,
+    num_tel varchar(13) not null,
     primary key(id_persona)
 );
 
