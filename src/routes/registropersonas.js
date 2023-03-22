@@ -23,8 +23,13 @@ router.post('/add',async (req, res)=>{
 
 router.get('/',async (req, res)=>{
    const personas = await db.query('SELECT * FROM personas');
-   console.log(personas);
    res.render('personas/list', {personas : personas});
+});
+
+router.get('/delete/:id', async (req, res)=>{
+    const {id_persona} = req.params;
+    await db.query('DELETE FROM personas WHERE id_persona = ?',[id_persona]);
+    res.redirect('/registropersonas');
 });
 
 module.exports= router;
