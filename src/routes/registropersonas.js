@@ -27,8 +27,8 @@ router.get('/',async (req, res)=>{
 });
 
 router.get('/delete/:id', async (req, res)=>{
-    const {id_persona} = req.params;
-    await db.query('DELETE FROM personas WHERE id_persona = ?',[id_persona]);
+    const {id} = req.params;
+    await db.query('DELETE FROM personas WHERE id_persona = ?',[id]);
     res.redirect('/registropersonas');
 });
 

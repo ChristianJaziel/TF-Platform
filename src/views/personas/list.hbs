@@ -22,7 +22,7 @@
                             <th scope="row">{{id_persona}}</th>
                             <td>{{nombres_persona}}</td>
                             <td>{{a_paterno}}</td>
-                            <td>{{a_paterno}}</td>
+                            <td>{{a_materno}}</td>
                             <td>{{calle}}</td>
                             <td>{{numero_casa}}</td>
                             <td>{{colonia}}</td>
@@ -33,6 +33,13 @@
                         </tbody>
                         </table>
                 </div>
+            </div>
+        {{else}}
+            <div class="col-md-6 mx-auto">
+                <div class="card card-body text-center">
+                    <p>No hay personas guardados aun</p>
+                    <a href="/registropersonas/add">Agrega uno.</a>
+                </div> 
             </div>
         {{/each}}
     </div>
