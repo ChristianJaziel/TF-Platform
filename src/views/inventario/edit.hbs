@@ -1,0 +1,192 @@
+<div class="container p-4">
+    <h3><center>Agrega un nuevo producto</center></h3>
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card ">
+                <div class="card-body">
+                    <form action="/producto/edit/{{inventario.id_pro_inv}}" method="POST">
+                        <div class="form-group m-3">
+                            <input type="text" class="form-control" name="nom_producto" value="{{inventario.nombre_pro}}" placeholder="Nombre producto" autofocus>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="text" class="form-control" name="cantidad" value="{{inventario.cantidad}}" placeholder="Cantidad">
+                        </div>
+                        <div class="form-group m-3">
+                            {{#isEqual inventario.descripcion_cant "Kg" }}
+                            <input type="checkbox" name="descripcion_cant" value="Kg" checked>
+                            <label for="kg">Kg</label>
+                            <input type="checkbox" name="descripcion_cant" value="Piezas">
+                            <label for="kg">Piezas</label>
+                            {{else}}
+                            <input type="checkbox" name="descripcion_cant" value="Kg">
+                            <label for="kg">Kg</label>
+                            <input type="checkbox" name="descripcion_cant" value="Piezas" checked>
+                            <label for="kg">Piezas</label>
+                            {{/isEqual}}
+                        </div>
+                        <p class="p-2"><strong>Genero producto</strong> </p>
+                        {{#isEqual inventario.genero "Frutas y verduras" }}
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Frutas y verduras" checked/>
+                            <label for="Frutas y verduras">Frutas y verduras</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Carnes" />
+                            <label for="Carnes">Carnes</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Lácteos" />
+                            <label for="Lácteos">Lacteos</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Panes y cereales" />
+                            <label for="Panes y cereales">Panes y cereales</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Limpieza" />
+                            <label for="Limpieza">Limpieza</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Utencilios" />
+                            <label for="Utencilios">Utencilios (Platos, Cucharas, Tenedores, Cuchillos, etc)</label>
+                        </div>
+                        {{/isEqual}}
+                        {{#isEqual inventario.genero "Carnes" }}
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Frutas y verduras" />
+                            <label for="Frutas y verduras">Frutas y verduras</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Carnes" checked/>
+                            <label for="Carnes">Carnes</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Lácteos" />
+                            <label for="Lácteos">Lacteos</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Panes y cereales" />
+                            <label for="Panes y cereales">Panes y cereales</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Limpieza" />
+                            <label for="Limpieza">Limpieza</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Utencilios" />
+                            <label for="Utencilios">Utencilios (Platos, Cucharas, Tenedores, Cuchillos, etc)</label>
+                        </div>
+                        {{/isEqual}}
+                        {{#isEqual inventario.genero "Lácteos" }}
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Frutas y verduras" />
+                            <label for="Frutas y verduras">Frutas y verduras</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Carnes" />
+                            <label for="Carnes">Carnes</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Lácteos" checked/>
+                            <label for="Lácteos">Lacteos</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Panes y cereales" />
+                            <label for="Panes y cereales">Panes y cereales</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Limpieza" />
+                            <label for="Limpieza">Limpieza</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Utencilios" />
+                            <label for="Utencilios">Utencilios (Platos, Cucharas, Tenedores, Cuchillos, etc)</label>
+                        </div>
+                        {{/isEqual}}
+                        {{#isEqual inventario.genero "Panes y cereales" }}
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Frutas y verduras" />
+                            <label for="Frutas y verduras">Frutas y verduras</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Carnes" />
+                            <label for="Carnes">Carnes</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Lácteos" />
+                            <label for="Lácteos">Lacteos</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Panes y cereales" checked/>
+                            <label for="Panes y cereales">Panes y cereales</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Limpieza" />
+                            <label for="Limpieza">Limpieza</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Utencilios" />
+                            <label for="Utencilios">Utencilios (Platos, Cucharas, Tenedores, Cuchillos, etc)</label>
+                        </div>
+                        {{/isEqual}}
+                        {{#isEqual inventario.genero "Limpieza" }}
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Frutas y verduras" />
+                            <label for="Frutas y verduras">Frutas y verduras</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Carnes" />
+                            <label for="Carnes">Carnes</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Lácteos" />
+                            <label for="Lácteos">Lacteos</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Panes y cereales" />
+                            <label for="Panes y cereales">Panes y cereales</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Limpieza" checked/>
+                            <label for="Limpieza">Limpieza</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Utencilios" />
+                            <label for="Utencilios">Utencilios (Platos, Cucharas, Tenedores, Cuchillos, etc)</label>
+                        </div>
+                        {{/isEqual}}
+                        {{#isEqual inventario.genero "Utencilios" }}
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Frutas y verduras" />
+                            <label for="Frutas y verduras">Frutas y verduras</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Carnes" />
+                            <label for="Carnes">Carnes</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Lácteos" />
+                            <label for="Lácteos">Lacteos</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Panes y cereales" />
+                            <label for="Panes y cereales">Panes y cereales</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Limpieza" />
+                            <label for="Limpieza">Limpieza</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Utencilios" checked/>
+                            <label for="Utencilios">Utencilios (Platos, Cucharas, Tenedores, Cuchillos, etc)</label>
+                        </div>
+                        {{/isEqual}}
+                        <div class="form-control">
+                            <button class="btn btn-outline-success btn-lg btn-block">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="container p-4">
+    <div class="title text-center m-4 p-4"><h1>Inventario</h1></div>
+    <div class="row">
+        {{#each inventario}}
+            <div class="row justify-content-md-center">
+                <div class="card text-center">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">Id producto</th>
+                            <th scope="col">Nombre producto</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Tipo unidad</th>
+                            <th scope="col">Genero del producto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <th scope="row">{{id_pro_inv}}</th>
+                            <td>{{nombre_pro}}</td>
+                            <td>{{cantidad}}</td>
+                            <td>{{descripcion_cant}}</td>
+                            <td>{{genero}}</td>
+                            <td><a href="/inventario/delete/{{id_pro_inv}}" class="btn btn-danger">Borrar</a></td>
+                            <td><a href="/inventario/edit/{{id_pro_inv}}" class="btn btn-secondary">Editar</a></td>
+                            </tr>
+                        </tbody>
+                        </table>
+                </div>
+            </div>
+        {{else}}
+            <div class="col-md-6 mx-auto">
+                <div class="card card-body text-center">
+                    <p>No hay productos guardados aun</p>
+                    <a href="/inventario/add">Agrega uno.</a>
+                </div> 
+            </div>
+        {{/each}}
+    </div>
+</div>

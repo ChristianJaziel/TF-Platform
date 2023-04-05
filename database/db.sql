@@ -18,6 +18,7 @@ create table Personas(
 create table Producto(
 	id_producto int auto_increment not null,
     nom_producto varchar(100),
+    cantidad varchar(100),
     primary key(id_producto)
 );
 
@@ -31,9 +32,8 @@ create table Siembra (
     a_materno varchar(50) not null,
     cantidad int not null,
     recibe varchar(100) not null,
-    fecha_recibe varchar(20),
+    fecha_recibe datetime,
     primary key(id_siembra),
-    foreign key(id_productoSi) references Producto(id_producto),
     foreign key(id_personaSi) references Personas(id_persona)
 );
 
@@ -53,12 +53,11 @@ create table Impactista(
 
 create table Inventario(
 	id_pro_inv int auto_increment not null,
-    id_productoRecibido int not null,
     nombre_pro varchar(200) not null,
     cantidad int not null,
+    descripcion_cant varchar(10) not null,
     genero varchar(50),
-    primary key(id_pro_inv),
-    foreign key(id_productoRecibido) references Producto(id_producto)
+    primary key(id_pro_inv)
 );
 
 show tables;

@@ -32,6 +32,8 @@ app.use((req, res, next)=>{
 //Rutas
 app.use(require('./routes/index.js'));
 app.use('/registropersonas',require('./routes/registropersonas.js'));
+app.use('/siembras',require('./routes/siembras.js'));
+app.use('/inventario',require('./routes/inventario.js'));
 app.use(require('./routes/authentication.js'));
 app.use('/links',require('./routes/links.js'));
 //Publico
