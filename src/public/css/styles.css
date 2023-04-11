@@ -1,0 +1,13 @@
+.autocomplete-results{
+    display: none;
+    margin: auto;
+    padding: auto;
+    width: 400px;
+    list-style: none;
+}
+
+.autocomplete-results li{
+    margin: auto;
+    padding: auto;
+    
+}

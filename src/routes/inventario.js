@@ -7,7 +7,7 @@ router.get('/', async(req, res)=> {
     res.render('inventario/list', {inventario : inventario});
 });
 
-router.get('/add',(req,res)=>{
+router.get('/add',async (req,res)=>{
     res.render('inventario/add');
 });
 

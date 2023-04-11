@@ -1,0 +1,99 @@
+<div class="container p-4">
+    <h2><center>Siembras</center></h2>
+    <h3><center>Agrega un nuevo producto </center></h3>
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <div class="card ">
+                <div class="card-body">
+                    <form action="/inventario/add" method="POST">
+                        <div class="form-group m-3">
+                            <input type="text" class="form-control" name="nombre_pro"  placeholder="Nombre producto" autofocus>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="text" class="form-control" name="cantidad" placeholder="Cantidad">
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" name="descripcion_cant" value="Kg">
+                            <label for="kg">Kg</label>
+                            <input type="checkbox" name="descripcion_cant" value="Piezas">
+                            <label for="kg">Piezas</label>
+                        </div>
+                        <p class="p-2">Genero producto</p>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Frutas y verduras" />
+                            <label for="Frutas y verduras">Frutas y verduras</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Carnes" />
+                            <label for="Carnes">Carnes</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Lácteos" />
+                            <label for="Lácteos">Lacteos</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Panes y cereales" />
+                            <label for="Panes y cereales">Panes y cereales</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Limpieza" />
+                            <label for="Limpieza">Limpieza</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Utencilios" />
+                            <label for="Utencilios">Utencilios (Platos, Cucharas, Tenedores, Cuchillos, etc)</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="text" class="form-control" name="nombresSi" id="search-persona" placeholder="Nombre sembrador">
+                            <ul class="autocomplete-results" id="autocomplete-results">
+
+                            </ul>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="text" class="form-control" name="a_paterno" placeholder="Apellido paterno sembrador">
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="text" class="form-control" name="a_materno" placeholder="Apellido materno sembrador">
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="text" class="form-control" name="recibe" placeholder="Nombre recibe">
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="datetime-local" class="form-control" name="fecha_recibe" placeholder="Nombre sembrador">
+                        </div>
+                        <div class="form-control justify-content-center">
+                            <button class="btn btn-outline-success btn-lg btn-block">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let input = document.getElementById("search-persona");
+    let autocomplete_results = document.getElementById("autocomplete-results");
+    fetch('/registropersonas/all')
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            //console.log(data.map((item)=>{
+              //  return item.nombres_persona;
+            //}));
+            })
+        .catch(error=>console.log(error));
+    input.addEventListener("keyup", (event) => {
+        let key = event.target.value;
+
+    console.log(event.target.value);    
+
+    if(key.length>0){
+        search(key);
+    }
+    });
+
+    const search = (key)=>{
+        
+    }
+
+</script>

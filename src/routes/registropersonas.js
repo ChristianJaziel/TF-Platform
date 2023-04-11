@@ -6,6 +6,16 @@ router.get('/add',(req, res)=>{
     res.render('personas/add');
 });
 
+router.get('/all',async(req,res)=>{
+    let allpeople = await db.query('SELECT * FROM personas');
+    res.send(allpeople);
+});
+
+router.get('all/:key',async(req,res)=>{
+    
+});
+
+
 router.post('/add',async (req, res)=>{
     const { nombres_persona, a_paterno, a_materno, calle, numero_casa, colonia, num_tel} = req.body;
     const newRegistro = {
