@@ -11,8 +11,9 @@ router.get('/all',async(req,res)=>{
     res.send(allpeople);
 });
 
-router.get('all/:key',async(req,res)=>{
-    
+router.get('/all/users',async(req,res)=>{
+    let users = await db.query('SELECT nombres_persona, a_paterno, a_materno FROM personas');
+    res.send(users);
 });
 
 

@@ -44,9 +44,8 @@
                             <label for="Utencilios">Utencilios (Platos, Cucharas, Tenedores, Cuchillos, etc)</label>
                         </div>
                         <div class="form-group m-3">
-                            <input type="text" class="form-control" name="nombresSi" id="search-persona" placeholder="Nombre sembrador">
-                            <ul class="autocomplete-results" id="autocomplete-results">
-
+                            <input type="text" class="form-control" autocomplete="off" name="nombresSi" id="search-persona" placeholder="Nombre sembrador">
+                            <ul class="autocomplete-results bg-black text-light" id="users">
                             </ul>
                         </div>
                         <div class="form-group m-3">
@@ -72,28 +71,32 @@
 </div>
 <script>
     let input = document.getElementById("search-persona");
-    let autocomplete_results = document.getElementById("autocomplete-results");
-    fetch('/registropersonas/all')
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            //console.log(data.map((item)=>{
-              //  return item.nombres_persona;
-            //}));
-            })
-        .catch(error=>console.log(error));
+    let userList = document.getElementById("users");
+    let users = [];    
+
+    window.addEventListener('DOMContentLoaded', async()=>{
+    const data = await loadUsers();
+    users = data;
+    renderUsers(users)
+    });
+    
+    
     input.addEventListener("keyup", (event) => {
-        let key = event.target.value;
-
-    console.log(event.target.value);    
-
-    if(key.length>0){
-        search(key);
-    }
+        const newUsers = users.filter(user => `${user.nombres_persona.toLowerCase()} ${user.a_paterno.toLowerCase()}`.includes(input.value.toLowerCase()));
+        renderUsers(newUsers); 
     });
 
-    const search = (key)=>{
-        
+    
+
+    const loadUsers = async ()=>{
+       const response = await fetch('/registropersonas/all');
+       return await response.json();
     }
 
+    const createUserItems = users => users.map(user => `<a><li>${user.nombres_persona} ${user.a_paterno} ${user.a_materno}</li></a>`).join(' ');
+
+    const renderUsers = (users)=>{
+        const itemsString = createUserItems(users);
+        userList.innerHTML = itemsString;
+    };
 </script>
