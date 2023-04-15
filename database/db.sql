@@ -24,14 +24,16 @@ create table Producto(
 
 create table Siembra (
 	id_siembra int auto_increment not null,
-    id_productoSi int,
     nom_productoSi varchar(100) not null,
-    id_personaSi int,
+    cantidad int not null,
+    descripcion_cant varchar(10),
+    genero_producto varchar(50),
+    id_personaSi int not null,
     nombresSi varchar(100) not null,
     a_paterno varchar(50) not null,
     a_materno varchar(50) not null,
-    cantidad int not null,
-    recibe varchar(100) not null,
+    num_tel varchar(13) not null,
+    nom_recibe varchar(100) not null,
     fecha_recibe datetime,
     primary key(id_siembra),
     foreign key(id_personaSi) references Personas(id_persona)

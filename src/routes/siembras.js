@@ -9,6 +9,8 @@ router.get('/add',(req, res)=>{
     res.render('siembras/add');
 });
 
-
+router.post('/add',async(req, res)=>{
+    
+});
 
 module.exports = router;

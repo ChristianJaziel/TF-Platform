@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <form action="/inventario/add" method="POST">
                         <div class="form-group m-3">
-                            <input type="text" class="form-control" name="nombre_pro"  placeholder="Nombre producto" autofocus>
+                            <input type="text" class="form-control" name="nom_productoSi"  placeholder="Nombre producto" autofocus>
                         </div>
                         <div class="form-group m-3">
                             <input type="text" class="form-control" name="cantidad" placeholder="Cantidad">
@@ -43,19 +43,25 @@
                             <input type="checkbox" class="" name="genero" value="Utencilios" />
                             <label for="Utencilios">Utencilios (Platos, Cucharas, Tenedores, Cuchillos, etc)</label>
                         </div>
+                         <div class="form-group m-3">
+                            <input hidden type="num" class="form-control" id="id" name="id_personaSi" placeholder="Id">
+                        </div>
                         <div class="form-group m-3">
                             <input type="text" class="form-control" autocomplete="off" name="nombresSi" id="search-persona" placeholder="Nombre sembrador">
-                            <ul class="autocomplete-results bg-black text-light" id="users">
+                            <ul class="autocomplete-results bg-black text-light list-group" id="users">
                             </ul>
                         </div>
                         <div class="form-group m-3">
-                            <input type="text" class="form-control" name="a_paterno" placeholder="Apellido paterno sembrador">
+                            <input type="text" class="form-control" id="apellidoP" name="a_paterno" placeholder="Apellido paterno sembrador">
                         </div>
                         <div class="form-group m-3">
-                            <input type="text" class="form-control" name="a_materno" placeholder="Apellido materno sembrador">
+                            <input type="text" class="form-control" id="apellidoM" name="a_materno" placeholder="Apellido materno sembrador">
                         </div>
                         <div class="form-group m-3">
-                            <input type="text" class="form-control" name="recibe" placeholder="Nombre recibe">
+                            <input type="tel" class="form-control" name="num_tel" id="num_tel" placeholder="Telefono">
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="text" class="form-control" name="nom_recibe" placeholder="Nombre recibe">
                         </div>
                         <div class="form-group m-3">
                             <input type="datetime-local" class="form-control" name="fecha_recibe" placeholder="Nombre sembrador">
@@ -70,19 +76,40 @@
     </div>
 </div>
 <script>
+    let inputid = document.getElementById("id");
     let input = document.getElementById("search-persona");
+    let inputap = document.getElementById("apellidoP");
+    let inputam = document.getElementById("apellidoM");
     let userList = document.getElementById("users");
-    let users = [];    
-
+    let inputel = document.getElementById("num_tel");
+    var users = []; 
+    let id = "";
+    let name = "";
+    let last_n = "";
+    let last_n_m = "";
+    let tel = "";
+    let all = "";   
+    
     window.addEventListener('DOMContentLoaded', async()=>{
     const data = await loadUsers();
     users = data;
-    renderUsers(users)
+    //renderUsers(users)
+    
+    //console.log(users);
     });
     
+    const validar = async function(string){
+        const data1 =  await users;
+        //console.log(data1)
+        user = data1;
+        var loadusername = await user.map(user => (user.nombres_persona + " " + user.a_paterno+ " "+ user.a_materno)); 
+       // await console.log(loadusername);
+    }
+
+    validar("s");
     
     input.addEventListener("keyup", (event) => {
-        const newUsers = users.filter(user => `${user.nombres_persona.toLowerCase()} ${user.a_paterno.toLowerCase()}`.includes(input.value.toLowerCase()));
+        const newUsers = users.filter(user => `${user.nombres_persona.toLowerCase()} ${user.a_paterno.toLowerCase()} ${user.a_materno.toLowerCase()}`.includes(input.value.toLowerCase()));
         renderUsers(newUsers); 
     });
 
@@ -93,10 +120,44 @@
        return await response.json();
     }
 
-    const createUserItems = users => users.map(user => `<a><li>${user.nombres_persona} ${user.a_paterno} ${user.a_materno}</li></a>`).join(' ');
+    const createUserItems = users => users.map(user => `<a><li class="list-group-item p-1" style="cursor:pointer;">${user.nombres_persona} ${user.a_paterno} ${user.a_materno}</li></a>`).join(' ');
 
     const renderUsers = (users)=>{
         const itemsString = createUserItems(users);
         userList.innerHTML = itemsString;
     };
+
+    userList.addEventListener("click", async(e)=>{
+        const data = await loadUsers();
+        //await console.log(data);
+        var usuario = [];
+        usuario = data;
+        if(e.target && e.target.nodeName == "LI"){
+            var loadusername = await usuario.map(user => {
+                let id1=user.id_persona;
+                let name1=user.nombres_persona;
+                let last_n1=user.a_paterno;
+                let last_n_m1=user.a_materno;
+                let tel1 = user.num_tel;
+                all = name1+" "+last_n1+" "+last_n_m1;
+                if(all == e.target.innerHTML){
+                    id=id1;
+                    name=name1;
+                    last_n=last_n1;
+                    last_n_m=last_n_m1;
+                    tel=tel1;
+                    inputid.value = id;
+                    input.value = name;
+                    inputap.value = last_n;
+                    inputam.value = last_n_m; 
+                    inputel.value = tel;
+                }
+            });
+            
+            renderUsers([]);
+        }
+    });
+
+    //https://www.youtube.com/watch?v=DgunJ2jMZwM
+    //https://www.youtube.com/watch?v=cN_wouQBnqE
 </script>
