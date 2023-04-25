@@ -11,6 +11,11 @@ router.get('/add',async (req,res)=>{
     res.render('inventario/add');
 });
 
+router.get('/all', async (req,res)=>{
+    const producto = await db.query('SELECT * FROM inventario');
+    res.send(producto);
+});
+
 router.post('/add',async(req,res)=>{
     const {nombre_pro,cantidad,descripcion_cant,genero} = req.body;
     const newRegistro = {nombre_pro,cantidad,descripcion_cant,genero};
