@@ -2,8 +2,9 @@ const express = require('express');
 const router =express.Router();
 const db = require('../database');
 
-router.get('/',(req, res)=>{
-
+router.get('/',async(req, res)=>{
+    const siembra = await db.query('SELECT * FROM siembra');
+    res.render('siembras/list',{siembra: siembra});
 });
 router.get('/add',(req, res)=>{
     res.render('siembras/add');
@@ -37,9 +38,13 @@ router.post('/add',async(req, res)=>{
         fecha_recibe
     };
     console.log(newRegistro);
-    res.send("Enviado");
-    //await db.query('INSERT INTO siembra SET ?', [newRegistro]);
-
+    await db.query('INSERT INTO siembra SET ?', [newRegistro]);
+    res.redirect('/siembras/');
 });
 
+router.get('/edit/:id', async (req, res)=>{
+    const {id} = req.params;
+    const rg = await db.query('SELECT * FROM siembra WHERE id_siembra = ?',[id]);
+    res.render('siembras/edit',{siembra : rg[0]});
+});
 module.exports = router;

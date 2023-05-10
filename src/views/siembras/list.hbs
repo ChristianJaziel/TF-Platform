@@ -1,0 +1,46 @@
+<div class="container p-4">
+    <div class="title text-center m-4 p-4"><h1>Siembras</h1></div>
+    <div class="row">
+        {{#each siembra}}
+            <div class="row justify-content-md-center">
+                <div class="card text-center">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">Id producto</th>
+                            <th scope="col">Nombre producto</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Genero del producto</th>
+                            <th scope="col">Nombre sembrador</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Nombre receptor</th>
+                            <th scope="col">Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <tr>
+                            <th scope="row">{{id_siembra}}</th>
+                            <td>{{nom_productoSi}}</td>
+                            <td>{{cantidad}} {{descripcion_cant}}</td>
+                            <td>{{genero_producto}}</td>
+                            <td>{{nombresSi}} {{a_paterno}} {{a_materno}}</td>
+                            <td>{{num_tel}}</td>
+                            <td>{{nom_recibe}}</td>
+                            <td>{{fecha_recibe}}</td>
+                            <td class="row"><a href="/siembras/delete/{{id_siembra}}" class="btn btn-danger">Borrar</a></td>
+                            <td class="row"><a href="/siembras/edit/{{id_siembra}}" class="btn btn-secondary">Editar</a></td>
+                            </tr>
+                        </tbody>
+                        </table>
+                </div>
+            </div>
+        {{else}}
+            <div class="col-md-6 mx-auto">
+                <div class="card card-body text-center">
+                    <p>No hay productos guardados aun</p>
+                    <a href="/siembras/add">Agrega uno.</a>
+                </div> 
+            </div>
+        {{/each}}
+    </div>
+</div>

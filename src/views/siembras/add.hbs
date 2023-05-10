@@ -8,7 +8,7 @@
                     <form action="/siembras/add" method="POST">
                         <div class="row">
                         <div class="form-group col-md-6">
-                            <input type="text" id="producto" class="form-control" name="nom_productoSi"  placeholder="Nombre producto" autofocus>
+                            <input autocomplete="off" type="text" id="producto" class="form-control" name="nom_productoSi"  placeholder="Nombre producto" autofocus>
                             <ul class="autocomplete-results bg-black text-light list-group" id="productos">
                             </ul>
                         </div>
@@ -16,63 +16,43 @@
                             <label for="">Se necesita</label>
                         </div>
                         <div class="col-md-5 form-group">
-                            <input type="text" class="form-control" name="" id="">
+                            <input type="text" class="form-control" name="" id="necesita">
                         </div>
-                        <div class="form-group m-3">
-                            <input type="text" class="form-control" name="cantidad" placeholder="Cantidad">
+                        <div class="form-group col-md-6 p-3">
+                            <input type="text" autocomplete="off" class="form-control" name="cantidad" placeholder="Cantidad a donar">
                         </div>
-                        <div class="form-group m-3">
+                        <div class="form-group col-md-6 p-3">
+                            <input type="text" class="form-control" name="genero_producto" id="genero" placeholder="Genero del producto"/>
+                        </div>
+                        <div class="form-group m-3 col-md-5">
                             <input type="checkbox" name="descripcion_cant" value="Kg">
                             <label for="kg">Kg</label>
                             <input type="checkbox" name="descripcion_cant" value="Piezas">
                             <label for="kg">Piezas</label>
                         </div>
-                        <p class="p-2">Genero producto</p>
-                        <div class="form-group m-3">
-                            <input type="checkbox" class="" name="genero_producto" value="Frutas y verduras" />
-                            <label for="Frutas y verduras">Frutas y verduras</label>
-                        </div>
-                        <div class="form-group m-3">
-                            <input type="checkbox" class="" name="genero_producto" value="Carnes" />
-                            <label for="Carnes">Carnes</label>
-                        </div>
-                        <div class="form-group m-3">
-                            <input type="checkbox" class="" name="genero_producto" value="Lácteos" />
-                            <label for="Lácteos">Lacteos</label>
-                        </div>
-                        <div class="form-group m-3">
-                            <input type="checkbox" class="" name="genero_producto" value="Panes y cereales" />
-                            <label for="Panes y cereales">Panes y cereales</label>
-                        </div>
-                        <div class="form-group m-3">
-                            <input type="checkbox" class="" name="genero_producto" value="Limpieza" />
-                            <label for="Limpieza">Limpieza</label>
-                        </div>
-                        <div class="form-group m-3">
-                            <input type="checkbox" class="" name="genero_producto" value="Utencilios" />
-                            <label for="Utencilios">Utencilios (Platos, Cucharas, Tenedores, Cuchillos, etc)</label>
-                        </div>
-                         <div class="form-group m-3">
+                        
+                        
+                         <div class="">
                             <input hidden type="num" class="form-control" id="id" name="id_personaSi" placeholder="Id">
                         </div>
-                        <div class="form-group m-3">
+                        <div class="form-group col-md-6 p-2">
                             <input type="text" class="form-control" autocomplete="off" name="nombresSi" id="search-persona" placeholder="Nombre sembrador">
                             <ul class="autocomplete-results bg-black text-light list-group" id="users">
                             </ul>
                         </div>
-                        <div class="form-group m-3">
-                            <input type="text" class="form-control" id="apellidoP" name="a_paterno" placeholder="Apellido paterno sembrador">
+                        <div class="form-group col-md-6 p-2">
+                            <input type="text" class="form-control" autocomplete="off" id="apellidoP" name="a_paterno" placeholder="Apellido paterno sembrador">
                         </div>
-                        <div class="form-group m-3">
-                            <input type="text" class="form-control" id="apellidoM" name="a_materno" placeholder="Apellido materno sembrador">
+                        <div class="form-group col-md-6 p-2">
+                            <input type="text" class="form-control" autocomplete="off" id="apellidoM" name="a_materno" placeholder="Apellido materno sembrador">
                         </div>
-                        <div class="form-group m-3">
-                            <input type="tel" class="form-control" name="num_tel" id="num_tel" placeholder="Telefono">
+                        <div class="form-group col-md-6 p-2">
+                            <input type="tel" class="form-control" autocomplete="off" name="num_tel" id="num_tel" placeholder="Telefono">
                         </div>
-                        <div class="form-group m-3">
-                            <input type="text" class="form-control" name="nom_recibe" placeholder="Nombre recibe">
+                        <div class="form-group col-md-6 p-2">
+                            <input type="text" class="form-control"  name="nom_recibe" placeholder="Nombre quien recibe">
                         </div>
-                        <div class="form-group m-3">
+                        <div class="form-group col-md-6 p-2">
                             <input type="date" class="form-control" name="fecha_recibe">
                         </div>
                         <div class="form-group m-3">
@@ -96,11 +76,14 @@
     let inputam = document.getElementById("apellidoM");
     let userList = document.getElementById("users");
     let producto = document.getElementById("producto");
+    let inputnecesita = document.getElementById("necesita");
     let productList = document.getElementById("productos");
     let inputel = document.getElementById("num_tel");
+    let inputgenero = document.getElementById("genero");
     var products= [];
     var users = [];
     let nombre_producto=""; 
+    let cantidad_producto="";
     let id = "";
     let name = "";
     let last_n = "";
@@ -190,9 +173,13 @@
         if(e.target && e.target.nodeName == "LI"){
             var loadpro = await prod.map(prod => {
                 let nombreproducto = prod.nombre_pro;
+                let cantidadnecesita = prod.cantidad;
                 if(nombreproducto == e.target.innerHTML){
                     nombre_producto = nombreproducto;
                     producto.value = nombre_producto;
+                    cantidad_producto = cantidadnecesita;
+                    inputnecesita.value = cantidad_producto +" "+ prod.descripcion_cant;
+                    inputgenero.value = prod.genero;
                 }
             });
             renderProducts([]);
