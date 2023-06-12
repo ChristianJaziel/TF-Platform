@@ -44,7 +44,46 @@ router.post('/add',async(req, res)=>{
 
 router.get('/edit/:id', async (req, res)=>{
     const {id} = req.params;
+    const inventario = await db.query('SELECT * FROM inventario');
     const rg = await db.query('SELECT * FROM siembra WHERE id_siembra = ?',[id]);
-    res.render('siembras/edit',{siembra : rg[0]});
+    res.render('siembras/edit',{siembra : rg[0], inventario:inventario});
 });
+
+router.post('/edit/:id', async (req, res)=>{
+    const {id} = req.params;
+    const {
+        nom_productoSi,
+        cantidad,
+        descripcion_cant,
+        genero_producto,
+        id_personaSi,
+        nombresSi,
+        a_paterno,
+        a_materno,
+        num_tel,
+        nom_recibe,
+        fecha_recibe
+    } = req.body;
+    const newRegistro = {
+        nom_productoSi,
+        cantidad,
+        descripcion_cant,
+        genero_producto,
+        id_personaSi,
+        nombresSi,
+        a_paterno,
+        a_materno,
+        num_tel,
+        nom_recibe,
+        fecha_recibe
+    };
+    await db.query('UPDATE siembra set ? where id_siembra = ?', [newRegistro, id]);
+    res.redirect('/siembras/');
+});
+
+router.get('/delete/:id', async (req,res)=>{
+    const {id} = req.params;
+    await db.query('DELETE FROM siembra WHERE id_siembra = ?',[id]);
+    res.redirect('/siembras');
+ });
 module.exports = router;

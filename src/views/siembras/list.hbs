@@ -1,34 +1,35 @@
-<div class="container p-4">
+<div class="container-fluid p-4">
     <div class="title text-center m-4 p-4"><h1>Siembras</h1></div>
-    <div class="row">
+    <div class="row ">
         {{#each siembra}}
-            <div class="row justify-content-md-center">
-                <div class="card text-center">
-                    <table class="table">
-                        <thead>
+            <div class="flex-column d-flex flex-md-row align-items-center justify-content-center">
+                <div class="container text-center row">
+                    <table class="table row">
+                        <thead class="flex-column">
                             <tr>
-                            <th scope="col">Id producto</th>
-                            <th scope="col">Nombre producto</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Genero del producto</th>
-                            <th scope="col">Nombre sembrador</th>
-                            <th scope="col">Telefono</th>
-                            <th scope="col">Nombre receptor</th>
-                            <th scope="col">Fecha</th>
+                            
+                            <th scope="col row">Nombre producto</th>
+                            <th scope="col row">Cantidad a donar</th>
+                            <th scope="col row">Genero del producto</th>
+                            <th scope="col row">Nombre sembrador</th>
+                            <th scope="col row">Telefono</th>
+                            <th scope="col row">Nombre receptor</th>
+                            <th scope="col row">Fecha</th>
                             </tr>
                         </thead>
-                        <tbody >
+                        <tbody class="flex-column">
                             <tr>
-                            <th scope="row">{{id_siembra}}</th>
-                            <td>{{nom_productoSi}}</td>
-                            <td>{{cantidad}} {{descripcion_cant}}</td>
-                            <td>{{genero_producto}}</td>
-                            <td>{{nombresSi}} {{a_paterno}} {{a_materno}}</td>
-                            <td>{{num_tel}}</td>
-                            <td>{{nom_recibe}}</td>
-                            <td>{{fecha_recibe}}</td>
+                            
+                            <td scope="row">{{nom_productoSi}}</td>
+                            <td scope="row"scope="row">{{cantidad}} {{descripcion_cant}}</td>
+                            <td scope="row">{{genero_producto}}</td>
+                            <td scope="row">{{nombresSi}} {{a_paterno}} {{a_materno}}</td>
+                            <td scope="row">{{num_tel}}</td>
+                            <td scope="row">{{nom_recibe}}</td>
+                            <td id="fecha" scope="row">{{fecha_recibe}}</td>
                             <td class="row"><a href="/siembras/delete/{{id_siembra}}" class="btn btn-danger">Borrar</a></td>
                             <td class="row"><a href="/siembras/edit/{{id_siembra}}" class="btn btn-secondary">Editar</a></td>
+                            <i class="bi bi-pencil-fill"></i>
                             </tr>
                         </tbody>
                         </table>
@@ -44,3 +45,14 @@
         {{/each}}
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/es.js"></script>
+<script>
+    var fechalabel= document.getElementById("fecha");
+    var fechaOriginal = moment(fechalabel.innerHTML);
+    moment.locale('es');
+    var dia = fechaOriginal.format("D");
+    var mes = fechaOriginal.format("MMMM");
+    var anio = fechaOriginal.format("YYYY");
+    fechalabel.innerHTML = dia+" de "+ mes + " del " + anio;
+</script>
