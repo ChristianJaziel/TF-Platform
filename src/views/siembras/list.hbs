@@ -2,12 +2,11 @@
     <div class="title text-center m-4 p-4"><h1>Siembras</h1></div>
     <div class="row ">
         {{#each siembra}}
-            <div class="flex-column d-flex flex-md-row align-items-center justify-content-center">
+            <div class="flex-column d-flex flex-md-row align-items-center justify-content-center" {{#if recibido }} style="background-color: greenyellow;" {{/if}}>
                 <div class="container text-center row">
                     <table class="table row">
                         <thead class="flex-column">
                             <tr>
-                            
                             <th scope="col row">Nombre producto</th>
                             <th scope="col row">Cantidad a donar</th>
                             <th scope="col row">Genero del producto</th>
@@ -26,10 +25,9 @@
                             <td scope="row">{{nombresSi}} {{a_paterno}} {{a_materno}}</td>
                             <td scope="row">{{num_tel}}</td>
                             <td scope="row">{{nom_recibe}}</td>
-                            <td id="fecha" scope="row">{{fecha_recibe}}</td>
+                            <td id="fecha" class="fecha" scope="row">{{fecha_recibe}}</td>
                             <td class="row"><a href="/siembras/delete/{{id_siembra}}" class="btn btn-danger">Borrar</a></td>
                             <td class="row"><a href="/siembras/edit/{{id_siembra}}" class="btn btn-secondary">Editar</a></td>
-                            <i class="bi bi-pencil-fill"></i>
                             </tr>
                         </tbody>
                         </table>
@@ -55,4 +53,5 @@
     var mes = fechaOriginal.format("MMMM");
     var anio = fechaOriginal.format("YYYY");
     fechalabel.innerHTML = dia+" de "+ mes + " del " + anio;
+
 </script>

@@ -10,6 +10,7 @@ router.get('/add',(req, res)=>{
     res.render('siembras/add');
 });
 
+
 router.post('/add',async(req, res)=>{
     const {
         nom_productoSi,
@@ -22,7 +23,8 @@ router.post('/add',async(req, res)=>{
         a_materno,
         num_tel,
         nom_recibe,
-        fecha_recibe
+        fecha_recibe,
+        recibido
     } = req.body;
     const newRegistro = {
         nom_productoSi,
@@ -35,7 +37,8 @@ router.post('/add',async(req, res)=>{
         a_materno,
         num_tel,
         nom_recibe,
-        fecha_recibe
+        fecha_recibe,
+        recibido
     };
     console.log(newRegistro);
     await db.query('INSERT INTO siembra SET ?', [newRegistro]);
@@ -62,7 +65,8 @@ router.post('/edit/:id', async (req, res)=>{
         a_materno,
         num_tel,
         nom_recibe,
-        fecha_recibe
+        fecha_recibe,
+        recibido
     } = req.body;
     const newRegistro = {
         nom_productoSi,
@@ -75,7 +79,8 @@ router.post('/edit/:id', async (req, res)=>{
         a_materno,
         num_tel,
         nom_recibe,
-        fecha_recibe
+        fecha_recibe,
+        recibido
     };
     await db.query('UPDATE siembra set ? where id_siembra = ?', [newRegistro, id]);
     res.redirect('/siembras/');

@@ -34,7 +34,8 @@ create table Siembra (
     a_materno varchar(50) not null,
     num_tel varchar(13) not null,
     nom_recibe varchar(100) not null,
-    fecha_recibe date,
+    fecha_recibe date not null ,
+    recibido boolean,
     primary key(id_siembra),
     foreign key(id_personaSi) references Personas(id_persona)
 );

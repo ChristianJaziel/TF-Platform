@@ -6,6 +6,8 @@
             <div class="card ">
                 <div class="card-body">
                     <form action="/siembras/add" method="POST">
+
+                    {{! Datos de la siembra }}
                         <div class="row">
                         <div class="form-group col-md-6">
                             <input autocomplete="off" type="text" id="producto" class="form-control" name="nom_productoSi"  placeholder="Nombre producto" autofocus>
@@ -31,7 +33,7 @@
                             <label for="kg">Piezas</label>
                         </div>
                         
-                        
+                        {{! Datos del sembrador }}
                          <div class="">
                             <input hidden type="num" class="form-control" id="id" name="id_personaSi" placeholder="Id">
                         </div>
@@ -56,8 +58,8 @@
                             <input type="date" class="form-control" name="fecha_recibe">
                         </div>
                         <div class="form-group m-3">
-                            <input type="checkbox" name="checked">
-                            <label for="kg">Entregado</label>
+                            <input type="checkbox" name="recibido" id="recibido">
+                            <label>Entregado</label>
                         </div>
                         <div class="form-control justify-content-center">
                             <button class="btn btn-outline-success btn-lg btn-block">Guardar</button>
@@ -90,7 +92,7 @@
     let last_n_m = "";
     let tel = "";
     let all = "";   
-    
+    var recibido=document.querySelector("input[id=recibido]");
     window.addEventListener('DOMContentLoaded', async()=>{
     const data = await loadUsers();
     users = data;
@@ -101,6 +103,14 @@
     //console.log(users);
     });
     
+    recibido.addEventListener('change',function(){
+        if(this.checked){
+            recibido.value=1;
+        }else{
+            recibido.value=0;
+        }
+    });
+
     input.addEventListener("keyup", (event) => {
         const newUsers = users.filter(user => `${user.nombres_persona.toLowerCase()} ${user.a_paterno.toLowerCase()} ${user.a_materno.toLowerCase()}`.includes(input.value.toLowerCase()));
         renderUsers(newUsers); 
