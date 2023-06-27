@@ -14,8 +14,10 @@ router.get('/add',(req, res)=>{
 router.post('/add',async(req, res)=>{
     const {
         nom_productoSi,
-        cantidad,
-        descripcion_cant,
+        cantidad_promesa,
+        cantidad_donar,
+        descripcion_cant_p,
+        descripcion_cant_d,
         genero_producto,
         id_personaSi,
         nombresSi,
@@ -28,8 +30,10 @@ router.post('/add',async(req, res)=>{
     } = req.body;
     const newRegistro = {
         nom_productoSi,
-        cantidad,
-        descripcion_cant,
+        cantidad_promesa,
+        cantidad_donar,
+        descripcion_cant_p,
+        descripcion_cant_d,
         genero_producto,
         id_personaSi,
         nombresSi,
@@ -56,8 +60,10 @@ router.post('/edit/:id', async (req, res)=>{
     const {id} = req.params;
     const {
         nom_productoSi,
-        cantidad,
-        descripcion_cant,
+        cantidad_promesa,
+        cantidad_donar,
+        descripcion_cant_p,
+        descripcion_cant_d,
         genero_producto,
         id_personaSi,
         nombresSi,
@@ -70,8 +76,10 @@ router.post('/edit/:id', async (req, res)=>{
     } = req.body;
     const newRegistro = {
         nom_productoSi,
-        cantidad,
-        descripcion_cant,
+        cantidad_promesa,
+        cantidad_donar,
+        descripcion_cant_p,
+        descripcion_cant_d,
         genero_producto,
         id_personaSi,
         nombresSi,

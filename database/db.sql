@@ -25,8 +25,10 @@ create table Producto(
 create table Siembra (
 	id_siembra int auto_increment not null,
     nom_productoSi varchar(100) not null,
-    cantidad int not null,
-    descripcion_cant varchar(10),
+    cantidad_promesa int not null,
+    cantidad_donar int,
+    descripcion_cant_p varchar(10),
+    descripcion_cant_d varchar(10),
     genero_producto varchar(50),
     id_personaSi int not null,
     nombresSi varchar(100) not null,
@@ -39,6 +41,27 @@ create table Siembra (
     primary key(id_siembra),
     foreign key(id_personaSi) references Personas(id_persona)
 );
+
+create table Registro_siembra (
+    id registro int auto_increment not null,
+    id_siembra int auto_increment not null,
+    nom_productoSi varchar(100) not null,
+    cantidad_promesa int not null,
+    cantidad_donar int,
+    descripcion_cant_p varchar(10),
+    descripcion_cant_d varchar(10),
+    genero_producto varchar(50),
+    id_personaSi int not null,
+    nombresSi varchar(100) not null,
+    a_paterno varchar(50) not null,
+    a_materno varchar(50) not null,
+    num_tel varchar(13) not null,
+    nom_recibe varchar(100) not null,
+    fecha_recibe date not null ,
+    recibido boolean,
+    primary key(id_siembra),
+    foreign key(id_personaSi) references Personas(id_persona)
+); 
 
 create table Impactista(
 	id_impactista int auto_increment not null,
