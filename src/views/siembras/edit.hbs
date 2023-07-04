@@ -107,9 +107,8 @@
     users = data;
     const datap = await loadProd();
     products = datap;
-    //renderUsers(users)
-    
-    //console.log(users);
+   
+    //querys
     });
     
     recibido.addEventListener('change',function(){
@@ -132,13 +131,14 @@
                 }
             });
 
+    //funciones
     input.addEventListener("keyup", (event) => {
         const newUsers = users.filter(user => `${user.nombres_persona.toLowerCase()} ${user.a_paterno.toLowerCase()} ${user.a_materno.toLowerCase()}`.includes(input.value.toLowerCase()));
         renderUsers(newUsers); 
     });
 
     producto.addEventListener("keyup", (event) => {
-        const newProducts = products.filter(producto => `${producto.nombre_pro.toLowerCase()}`);
+        const newProducts = products.filter(product => `${product.nombre_pro.toLowerCase()}`.includes(producto.value.toLowerCase()));
         renderProducts(newProducts);    
     });
 
