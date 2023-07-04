@@ -43,8 +43,8 @@ create table Siembra (
 );
 
 create table Registro_siembra (
-    id registro int auto_increment not null,
-    id_siembra int auto_increment not null,
+    id_registro int auto_increment not null,
+    id_siembra_r int not null,
     nom_productoSi varchar(100) not null,
     cantidad_promesa int not null,
     cantidad_donar int,
@@ -59,8 +59,9 @@ create table Registro_siembra (
     nom_recibe varchar(100) not null,
     fecha_recibe date not null ,
     recibido boolean,
-    primary key(id_siembra),
-    foreign key(id_personaSi) references Personas(id_persona)
+    primary key(id_registro),
+    foreign key(id_personaSi) references Personas(id_persona),
+    foreign key(id_siembra_r) references Siembra(id_siembra)
 ); 
 
 create table Impactista(

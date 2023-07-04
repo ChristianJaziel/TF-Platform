@@ -1,8 +1,8 @@
 <div class="container-fluid p-4">
     <div class="title text-center m-4 p-4"><h1>Siembras</h1></div>
     <div class="row ">
-        {{#each siembra}}
-            <div class="flex-column d-flex m-1 flex-md-row align-items-center justify-content-center" {{#if recibido }} style="background-color: greenyellow;" {{/if}}>
+        {{#each rg_siembra}}
+            <div class="flex-column d-flex m-1 flex-md-row align-items-center justify-content-center">
                 <div class="container text-center row">
                     <table class="table row">
                         <thead class="flex-column">
@@ -15,9 +15,6 @@
                             <th scope="col row">Telefono</th>
                             <th scope="col row">Nombre receptor</th>
                             <th scope="col row">Fecha</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
                             </tr>
                         </thead>
                         <tbody class="flex-column">
@@ -30,33 +27,11 @@
                             <td scope="row">{{num_tel}}</td>
                             <td scope="row">{{nom_recibe}}</td>
                             <td id="fecha" class="fecha" scope="row">{{{fecha_recibe}}}</td>
-                            <td class=""><a href="/siembras/view/{{id_siembra}}" class="btn btn-outline-success">Ver</a></td>
-                            <td class=""><a href="/siembras/edit/{{id_siembra}}" class="btn btn-outline-warning" {{#if recibido}} disabled {{/if}}>Editar</a></td>
-                            <td class=""><a href="/siembras/delete/{{id_siembra}}" class="btn btn-outline-danger">Borrar</a></td>
                             </tr>
                         </tbody>
                         </table>
                 </div>
             </div>
-        {{else}}
-            <div class="col-md-6 mx-auto">
-                <div class="card card-body text-center">
-                    <p>No hay productos guardados aun</p>
-                    <a href="/siembras/add">Agrega uno.</a>
-                </div> 
-            </div>
         {{/each}}
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/es.js"></script>
-<script>
-    var fechalabel= document.getElementById("fecha");
-    var fechaOriginal = moment(fechalabel.innerHTML);
-    moment.locale('es');
-    var dia = fechaOriginal.format("D");
-    var mes = fechaOriginal.format("MMMM");
-    var anio = fechaOriginal.format("YYYY");
-    fechalabel.innerHTML = dia+" de "+ mes + " del " + anio;
-
-</script>
