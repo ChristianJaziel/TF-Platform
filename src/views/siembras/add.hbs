@@ -139,7 +139,7 @@
     });
 
     producto.addEventListener("keyup", (event) => {
-        const newProducts = products.filter(producto => `${producto.nombre_pro.toLowerCase()}`);
+        const newProducts = products.filter(product => `${product.nombre_pro.toLowerCase()}`.includes(producto.value.toLowerCase()));
         renderProducts(newProducts);    
     });
 
