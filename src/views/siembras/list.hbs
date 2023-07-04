@@ -31,7 +31,11 @@
                             <td scope="row">{{nom_recibe}}</td>
                             <td id="fecha" class="fecha" scope="row">{{{fecha_recibe}}}</td>
                             <td class=""><a href="/siembras/view/{{id_siembra}}" class="btn btn-outline-success">Ver</a></td>
-                            <td class=""><a href="/siembras/edit/{{id_siembra}}" class="btn btn-outline-warning" {{#if recibido}} disabled {{/if}}>Editar</a></td>
+                            {{#if recibido}}
+                            <td class=""><a href="/siembras/edit/{{id_siembra}}" id="edit" class="btn btn-outline-warning disabled">Editar</a></td>
+                            {{else}}
+                            <td class=""><a href="/siembras/edit/{{id_siembra}}" id="edit" class="btn btn-outline-warning">Editar</a></td>
+                            {{/if}}
                             <td class=""><a href="/siembras/delete/{{id_siembra}}" class="btn btn-outline-danger">Borrar</a></td>
                             </tr>
                         </tbody>
