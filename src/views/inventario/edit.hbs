@@ -15,6 +15,16 @@
                             {{#isEqual inventario.descripcion_cant "Kg" }}
                             <input type="checkbox" name="descripcion_cant" value="Kg" checked>
                             <label for="kg">Kg</label>
+                            <input type="checkbox" name="descripcion_cant" value="Litros">
+                            <label for="kg">Litros</label>
+                            <input type="checkbox" name="descripcion_cant" value="Piezas">
+                            <label for="kg">Piezas</label>
+                            {{/isEqual}}
+                            {{#isEqual inventario.descripcion_cant "Litros" }}
+                            <input type="checkbox" name="descripcion_cant" value="Kg" >
+                            <label for="kg">Kg</label>
+                            <input type="checkbox" name="descripcion_cant" value="Litros" checked>
+                            <label for="kg">Litros</label>
                             <input type="checkbox" name="descripcion_cant" value="Piezas">
                             <label for="kg">Piezas</label>
                             {{else}}

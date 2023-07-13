@@ -9,6 +9,7 @@
                     {{! Datos de la siembra }}
                         <div class="row">
                         <div class="form-group col-md-6">
+                            <input type="number" name="id_prod_inv" id="id_prod_inv" hidden>
                             <input autocomplete="off" type="text" id="producto" class="form-control" name="nom_productoSi"  placeholder="Nombre producto" autofocus>
                             <ul class="autocomplete-results bg-black text-light list-group" id="productos">
                             </ul>
@@ -32,6 +33,8 @@
                             <p class="form-control"><strong>Descripcion de la promesa</strong></p>
                             <p class="form-control"><input type="checkbox" name="descripcion_cant_p" value="Kg">
                             <label for="kg">Kg</label></p>
+                            <p class="form-control"><input type="checkbox" name="descripcion_cant_p" value="Litros">
+                            <label for="kg">Litros</label></p>
                             <p class="form-control"><input type="checkbox" name="descripcion_cant_p" value="Piezas">
                             <label for="kg">Piezas</label></p>
                             <p class="form-control"><input type="checkbox" name="descripcion_cant_p" value="Efectivo">
@@ -41,6 +44,8 @@
                             <p class="form-control"><strong>Descripcion de la donacion</strong></p>
                             <p class="form-control"><input type="checkbox" name="descripcion_cant_d" value="Kg">
                             <label for="kg">Kg</label></p>
+                            <p class="form-control"><input type="checkbox" name="descripcion_cant_d" value="Litros">
+                            <label for="kg">Litros</label></p>
                             <p class="form-control"><input type="checkbox" name="descripcion_cant_d" value="Piezas">
                             <label for="kg">Piezas</label></p>
                             <p class="form-control"><input type="checkbox" name="descripcion_cant_d" value="Efectivo">
@@ -98,6 +103,7 @@
     let inputgenero = document.getElementById("genero");
     var products= [];
     var users = [];
+    let idprodinv = document.getElementById("id_prod_inv");
     let nombre_producto=""; 
     let cantidad_producto="";
     let id = "";
@@ -205,13 +211,15 @@
         if(e.target && e.target.nodeName == "LI"){
             var loadpro = await prod.map(prod => {
                 let nombreproducto = prod.nombre_pro;
-                let cantidadnecesita = prod.cantidad;
+                let cantidadnecesita = prod.cantidad_nec;
+                console.log(prod.id_pro_inv);
                 if(nombreproducto == e.target.innerHTML){
+                    idprodinv.value = prod.id_pro_inv; 
                     nombre_producto = nombreproducto;
                     producto.value = nombre_producto;
-                    cantidad_producto = cantidadnecesita;
-                    inputnecesita.value = cantidad_producto +" "+ prod.descripcion_cant;
-                    inputgenero.value = prod.genero;
+                    
+                    inputnecesita.value = prod.cantidad_nec +" "+ prod.descripcion_cant;
+                    inputgenero.value = prod.genero; //con el puro mapeo se insertaba el valor dentro del input, no hacian falta las variables de arriba
                 }
             });
             renderProducts([]);

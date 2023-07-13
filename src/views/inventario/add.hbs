@@ -9,11 +9,14 @@
                             <input type="text" class="form-control" name="nombre_pro" placeholder="Nombre producto" autofocus>
                         </div>
                         <div class="form-group m-3">
-                            <input type="text" class="form-control" name="cantidad" placeholder="Cantidad">
+                            <input type="number" class="form-control" name="cantidad_nec" id="cantidad_nec" placeholder="Cantidad">
+                            <input type="number" id="cantidad_inicial" name="cantidad_inicial" value="" hidden>
                         </div>
                         <div class="form-group m-3">
                             <input type="checkbox" name="descripcion_cant" value="Kg">
                             <label for="kg">Kg</label>
+                            <input type="checkbox" name="descripcion_cant" value="Litros">
+                            <label for="kg">Litros</label>
                             <input type="checkbox" name="descripcion_cant" value="Piezas">
                             <label for="kg">Piezas</label>
                         </div>
@@ -43,7 +46,7 @@
                             <label for="Utencilios">Utencilios (Platos, Cucharas, Tenedores, Cuchillos, etc)</label>
                         </div>
                         <div class="form-control justify-content-center">
-                            <button class="btn btn-outline-success btn-lg btn-block">Guardar</button>
+                            <button class="btn btn-outline-success btn-lg btn-block" id="save">Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -51,3 +54,10 @@
         </div>
     </div>
 </div>
+<script>
+
+    document.querySelector("#save").addEventListener("click", async()=>{
+        document.getElementById('cantidad_inicial').value = document.getElementById('cantidad_nec').value;
+    });
+
+</script>

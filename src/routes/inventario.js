@@ -17,8 +17,8 @@ router.get('/all', async (req,res)=>{
 });
 
 router.post('/add',async(req,res)=>{
-    const {nombre_pro,cantidad,descripcion_cant,genero} = req.body;
-    const newRegistro = {nombre_pro,cantidad,descripcion_cant,genero};
+    const {nombre_pro,cantidad_nec,cantidad_inicial,descripcion_cant,genero} = req.body;
+    const newRegistro = {nombre_pro,cantidad_nec,cantidad_inicial,descripcion_cant,genero};
     await db.query('INSERT INTO inventario SET ?', [newRegistro]);
     res.redirect('/inventario/');
 });

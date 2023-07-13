@@ -9,8 +9,8 @@
                             <tr>
                             <th scope="col">Id producto</th>
                             <th scope="col">Nombre producto</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Tipo unidad</th>
+                            <th scope="col">Cantidad necesaria</th>
+                            <th scope="col">Cantidad inicial</th>
                             <th scope="col">Genero del producto</th>
                             </tr>
                         </thead>
@@ -18,8 +18,8 @@
                             <tr>
                             <th scope="row">{{id_pro_inv}}</th>
                             <td>{{nombre_pro}}</td>
-                            <td>{{cantidad}}</td>
-                            <td>{{descripcion_cant}}</td>
+                            <td>{{cantidad_nec}} {{descripcion_cant}}</td>
+                            <td>{{cantidad_inicial}} {{descripcion_cant}}</td>
                             <td>{{genero}}</td>
                             <td class="row"><a href="/inventario/delete/{{id_pro_inv}}" class="btn btn-danger">Borrar</a></td>
                             <td class="row"><a href="/inventario/edit/{{id_pro_inv}}" class="btn btn-secondary">Editar</a></td>

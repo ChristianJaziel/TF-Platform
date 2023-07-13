@@ -12,6 +12,7 @@ router.get('/add',(req, res)=>{
 
 router.post('/add',async(req, res)=>{
     const {
+        id_prod_inv,
         nom_productoSi,
         cantidad_promesa,
         cantidad_donar,
@@ -28,6 +29,7 @@ router.post('/add',async(req, res)=>{
         recibido
     } = req.body;
     const newRegistro = {
+        id_prod_inv,
         nom_productoSi,
         cantidad_promesa,
         cantidad_donar,
@@ -44,11 +46,13 @@ router.post('/add',async(req, res)=>{
         recibido
     };
     await db.query('INSERT INTO siembra SET ?', [newRegistro]);
+    await db.query('UPDATE inventario set cantidad_nec = cantidad_nec - ? where id_pro_inv = ?', [cantidad_donar, id_prod_inv]);
     id_r = await db.query('SELECT MAX(id_siembra) as id from siembra');
     const {id} = id_r[0];
     const id_siembra_r = id;
     const registroSiembra ={
         id_siembra_r,
+        id_prod_inv,
         nom_productoSi,
         cantidad_promesa,
         cantidad_donar,
@@ -84,6 +88,7 @@ router.get('/edit/:id', async (req, res)=>{
 router.post('/edit/:id', async (req, res)=>{
     const {id} = req.params;
     const {
+        id_prod_inv,
         nom_productoSi,
         cantidad_promesa,
         cantidad_donar,
@@ -100,6 +105,7 @@ router.post('/edit/:id', async (req, res)=>{
         recibido
     } = req.body;
     const newRegistro = {
+        id_prod_inv,
         nom_productoSi,
         cantidad_promesa,
         cantidad_donar,
@@ -121,6 +127,7 @@ router.post('/edit/:id', async (req, res)=>{
     const id_siembra_r = idr;
     const registroSiembra ={
         id_siembra_r,
+        id_prod_inv,
         nom_productoSi,
         cantidad_promesa,
         cantidad_donar,
@@ -142,6 +149,7 @@ router.post('/edit/:id', async (req, res)=>{
 
 router.get('/delete/:id', async (req,res)=>{
     const {id} = req.params;
+    await db.query('DELETE FROM registro_siembra where id_siembra_r = ?', [id]);
     await db.query('DELETE FROM siembra WHERE id_siembra = ?',[id]);
     res.redirect('/siembras');
  });
