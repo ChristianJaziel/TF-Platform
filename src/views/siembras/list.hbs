@@ -36,7 +36,11 @@
                             {{else}}
                             <td class=""><a href="/siembras/edit/{{id_siembra}}" id="edit" class="btn btn-outline-warning">Editar</a></td>
                             {{/if}}
+                            {{#if recibido}}
+                            <td class=""><a href="/siembras/delete/{{id_siembra}}" class="btn btn-outline-danger disabled">Borrar</a></td>
+                            {{else}}
                             <td class=""><a href="/siembras/delete/{{id_siembra}}" class="btn btn-outline-danger">Borrar</a></td>
+                            {{/if}}
                             </tr>
                         </tbody>
                         </table>

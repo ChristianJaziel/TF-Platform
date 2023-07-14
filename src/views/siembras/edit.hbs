@@ -17,16 +17,16 @@
                             <label for="">Se necesita</label>
                         </div>
                         <div class="col-md-5 form-group">
-                            <input type="text" class="form-control" name="" id="necesita" value="{{siembra.necesario}}"/>
+                            <input type="text" class="form-control" name="" id="necesita" value="{{siembra.necesario}}" readonly/>
                         </div>
                         <div class="form-group col-md-2 p-3">
                             <label for=""><strong>Cantidad prometida</strong></label>
                         </div>
                         <div class="form-group col-md-2 p-3">
-                            <input type="text" autocomplete="off" id="cantidad_promesa" class="form-control" name="cantidad_promesa" value="{{siembra.cantidad_promesa}}" placeholder="Cantidad promesa" readonly>
+                            <input type="number" autocomplete="off" id="cantidad_promesa" class="form-control" name="cantidad_promesa" value="{{siembra.cantidad_promesa}}" placeholder="Cantidad promesa" readonly>
                         </div>
                         <div class="form-group col-md-4 p-3">
-                            <input type="text" autocomplete="off" id="cantidad_donar" class="form-control" name="cantidad_donar" placeholder="Cantidad a donar">
+                            <input type="number" autocomplete="off" id="cantidad_donar" class="form-control" name="cantidad_donar" placeholder="Cantidad a donar" value="{{siembra.cantidad_donar}}">
                         </div>
                         <div class="form-group col-md-4 p-3">
                             <input type="text" class="form-control" name="genero_producto" id="genero" placeholder="Genero del producto" value="{{siembra.genero_producto}}"/>
@@ -63,7 +63,7 @@
                             <input type="tel" class="form-control" autocomplete="off" name="num_tel" id="num_tel" placeholder="Telefono" value="{{siembra.num_tel}}">
                         </div>
                         <div class="form-group col-md-6 p-2">
-                            <input type="text" class="form-control"  name="nom_recibe" placeholder="Nombre quien recibe" value="{{siembra.nom_recibe}}">
+                            <input type="text" class="form-control"  name="nom_recibe" placeholder="Nombre quien recibe" value="">
                         </div>
                         <div class="form-group col-md-6 p-2">
                             <input type="date" class="form-control" name="fecha_recibe" value="{{siembra.fecha_recibe}}">

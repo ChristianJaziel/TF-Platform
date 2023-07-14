@@ -104,6 +104,7 @@ router.post('/edit/:id', async (req, res)=>{
         fecha_recibe,
         recibido
     } = req.body;
+    const idprod = id_prod_inv;
     const newRegistro = {
         id_prod_inv,
         nom_productoSi,
@@ -122,9 +123,11 @@ router.post('/edit/:id', async (req, res)=>{
         recibido
     };
     await db.query('UPDATE siembra set ? where id_siembra = ?', [newRegistro, id]);
-    id_r = await db.query('SELECT MAX(id_siembra) as idr from siembra');
+    const id_r = await db.query('SELECT MAX(id_siembra) as idr from siembra');
     const {idr} = id_r[0];
     const id_siembra_r = idr;
+    const oldc = await db.query('SELECT MAX(cantidad_donar) as cantidad_ant from registro_siembra WHERE id_siembra_r = ?', [id_siembra_r]);
+    const {cantidad_ant} = oldc[0];
     const registroSiembra ={
         id_siembra_r,
         id_prod_inv,
@@ -144,6 +147,10 @@ router.post('/edit/:id', async (req, res)=>{
         recibido
     };
     await db.query('INSERT INTO registro_siembra SET ?', [registroSiembra]);
+    const newc = await db.query('SELECT MAX(cantidad_donar) as cantidad_nue from registro_siembra WHERE id_siembra_r = ?', [id_siembra_r]);
+    const {cantidad_nue} = newc[0];
+    const result = cantidad_nue - cantidad_ant;
+    await db.query('UPDATE inventario set cantidad_nec = cantidad_nec - ? where id_pro_inv = ?', [result, idprod[0]]);
     res.redirect('/siembras/');
 });
 
