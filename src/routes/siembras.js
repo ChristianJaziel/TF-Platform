@@ -156,6 +156,11 @@ router.post('/edit/:id', async (req, res)=>{
 
 router.get('/delete/:id', async (req,res)=>{
     const {id} = req.params;
+    const idprod = await db.query('SELECT id_prod_inv from siembra where id_siembra = ?', [id]);
+    const inv = await db.query('Select cantidad_donar from siembra where id_siembra = ?',[id]);
+    const {cantidad_donar} = inv[0];
+    const {id_prod_inv} = idprod[0];  
+    await db.query('update inventario set cantidad_nec = cantidad_nec + ? where id_pro_inv = ?', [cantidad_donar,id_prod_inv]);
     await db.query('DELETE FROM registro_siembra where id_siembra_r = ?', [id]);
     await db.query('DELETE FROM siembra WHERE id_siembra = ?',[id]);
     res.redirect('/siembras');

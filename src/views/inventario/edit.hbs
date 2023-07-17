@@ -1,15 +1,17 @@
 <div class="container p-4">
-    <h3><center>Agrega un nuevo producto</center></h3>
+    <h3 class="m-3"><center>Agrega un nuevo producto</center></h3>
     <div class="row">
         <div class="col-md-6 mx-auto">
             <div class="card ">
                 <div class="card-body">
-                    <form action="/producto/edit/{{inventario.id_pro_inv}}" method="POST">
+                    <form action="/inventario/edit/{{inventario.id_pro_inv}}" method="POST">
                         <div class="form-group m-3">
-                            <input type="text" class="form-control" name="nom_producto" value="{{inventario.nombre_pro}}" placeholder="Nombre producto" autofocus>
+                            <input type="text" class="form-control" autocomplete="off" name="nombre_pro" value="{{inventario.nombre_pro}}" placeholder="Nombre producto" autofocus>
+                            
                         </div>
                         <div class="form-group m-3">
-                            <input type="text" class="form-control" name="cantidad" value="{{inventario.cantidad}}" placeholder="Cantidad">
+                            <input type="number" id="cantidad_nec" class="form-control" autocomplete="off" name="cantidad_nec" value="{{inventario.cantidad_nec}}" placeholder="Cantidad">
+                            <input type="number" id="cantidad_inicial" name="cantidad_inicial" value="" hidden>
                         </div>
                         <div class="form-group m-3">
                             {{#isEqual inventario.descripcion_cant "Kg" }}
@@ -27,9 +29,12 @@
                             <label for="kg">Litros</label>
                             <input type="checkbox" name="descripcion_cant" value="Piezas">
                             <label for="kg">Piezas</label>
-                            {{else}}
+                            {{/isEqual}}
+                            {{#isEqual inventario.descripcion_cant "Piezas"}}
                             <input type="checkbox" name="descripcion_cant" value="Kg">
                             <label for="kg">Kg</label>
+                            <input type="checkbox" name="descripcion_cant" value="Litros" >
+                            <label for="kg">Litros</label>
                             <input type="checkbox" name="descripcion_cant" value="Piezas" checked>
                             <label for="kg">Piezas</label>
                             {{/isEqual}}
@@ -191,8 +196,38 @@
                             <label for="Utencilios">Utencilios (Platos, Cucharas, Tenedores, Cuchillos, etc)</label>
                         </div>
                         {{/isEqual}}
+                        {{#isEqual inventario.genero "Otros"}}
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Frutas y verduras" />
+                            <label for="Frutas y verduras">Frutas y verduras</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Carnes" />
+                            <label for="Carnes">Carnes</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Lácteos" />
+                            <label for="Lácteos">Lacteos</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Panes y cereales" />
+                            <label for="Panes y cereales">Panes y cereales</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Limpieza" />
+                            <label for="Limpieza">Limpieza</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Utencilios" />
+                            <label for="Utencilios">Utencilios (Platos, Cucharas, Tenedores, Cuchillos, etc)</label>
+                        </div>
+                        <div class="form-group m-3">
+                            <input type="checkbox" class="" name="genero" value="Otros" checked/>
+                            <label for="Otros">Otros</label>
+                        </div>
+                        {{/isEqual}}
                         <div class="form-control">
-                            <button class="btn btn-outline-success btn-lg btn-block">Guardar</button>
+                            <button id="save" class="btn btn-outline-success btn-lg btn-block">Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -200,3 +235,8 @@
         </div>
     </div>
 </div>
+<script>
+      document.querySelector("#save").addEventListener("click", async()=>{
+        document.getElementById('cantidad_inicial').value = document.getElementById('cantidad_nec').value;
+    });
+</script>
