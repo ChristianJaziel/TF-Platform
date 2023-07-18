@@ -218,7 +218,7 @@
                     nombre_producto = nombreproducto;
                     producto.value = nombre_producto;
                     
-                    inputnecesita.value = prod.cantidad_nec +" "+ prod.descripcion_cant;
+                    inputnecesita.value = (prod.cantidad_inicial - prod.cantidad_sembrada) +" "+ prod.descripcion_cant;
                     inputgenero.value = prod.genero; //con el puro mapeo se insertaba el valor dentro del input, no hacian falta las variables de arriba
                 }
             });
