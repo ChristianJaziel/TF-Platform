@@ -47,6 +47,7 @@ router.post('/add',async(req, res)=>{
     };
     await db.query('INSERT INTO siembra SET ?', [newRegistro]);
     await db.query('UPDATE inventario set cantidad_nec = cantidad_nec - ? where id_pro_inv = ?', [cantidad_donar, id_prod_inv]);
+    await db.query('UPDATE inventario set cantidad_sembrada = cantidad_sembrada + ? where id_pro_inv = ?',[cantidad_promesa, id_prod_inv]);
     id_r = await db.query('SELECT MAX(id_siembra) as id from siembra');
     const {id} = id_r[0];
     const id_siembra_r = id;
@@ -122,11 +123,12 @@ router.post('/edit/:id', async (req, res)=>{
         fecha_recibe,
         recibido
     };
+    //se actualizan los datos de la siembra con su respectivo id
     await db.query('UPDATE siembra set ? where id_siembra = ?', [newRegistro, id]);
-    const id_r = await db.query('SELECT MAX(id_siembra) as idr from siembra');
-    const {idr} = id_r[0];
-    const id_siembra_r = idr;
-    const oldc = await db.query('SELECT MAX(cantidad_donar) as cantidad_ant from registro_siembra WHERE id_siembra_r = ?', [id_siembra_r]);
+    //.........................................................................................................................................
+    //se extrae el id de la recien actualizacion y se pasa como objeto a id_r
+    const id_siembra_r = id;
+    const oldc = await db.query('SELECT MAX(cantidad_donar) as cantidad_ant from registro_siembra WHERE id_siembra_r = ?', [id]);
     const {cantidad_ant} = oldc[0];
     const registroSiembra ={
         id_siembra_r,
@@ -146,11 +148,15 @@ router.post('/edit/:id', async (req, res)=>{
         fecha_recibe,
         recibido
     };
+    //se crea un registro con los mismos datos de la siembra para llevar un control de actualizaciones sobre la siembra actualizada
     await db.query('INSERT INTO registro_siembra SET ?', [registroSiembra]);
     const newc = await db.query('SELECT MAX(cantidad_donar) as cantidad_nue from registro_siembra WHERE id_siembra_r = ?', [id_siembra_r]);
     const {cantidad_nue} = newc[0];
+    console.log("cantidad ant, cantidad nue ",cantidad_ant, cantidad_nue);
     const result = cantidad_nue - cantidad_ant;
-    await db.query('UPDATE inventario set cantidad_nec = cantidad_nec - ? where id_pro_inv = ?', [result, idprod[0]]);
+    console.log("result ",result);
+    console.log("idprod: ", idprod);
+    await db.query('UPDATE inventario set cantidad_nec = cantidad_nec - ? where id_pro_inv = ?', [result, idprod]);
     res.redirect('/siembras/');
 });
 

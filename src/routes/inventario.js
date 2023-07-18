@@ -29,8 +29,8 @@ router.get('/edit/:id', async (req, res)=>{
 });
 router.post('/edit/:id',async (req, res)=>{
     const {id} = req.params;
-    const{nombre_pro,cantidad_nec,descripcion_cant,genero} = req.body;
-    const newRegistro = {nombre_pro,cantidad_nec,descripcion_cant,genero}
+    const{nombre_pro,cantidad_nec,cantidad_inicial,descripcion_cant,genero} = req.body;
+    const newRegistro = {nombre_pro,cantidad_nec, cantidad_inicial,descripcion_cant,genero}
     await db.query('UPDATE inventario set ? WHERE id_pro_inv =?',[newRegistro, id]);
     res.redirect('/inventario/');
  });
