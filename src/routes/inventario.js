@@ -12,7 +12,7 @@ router.get('/add',async (req,res)=>{
 });
 
 router.get('/all', async (req,res)=>{
-    const producto = await db.query('SELECT * FROM inventario');
+    const producto = await db.query('SELECT * FROM inventario WHERE cantidad_sembrada < cantidad_inicial');
     res.send(producto);
 });
 
