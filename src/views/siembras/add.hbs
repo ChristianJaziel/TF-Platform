@@ -10,7 +10,7 @@
                         <div class="row">
                         <div class="form-group col-md-6">
                             <input type="number" name="id_prod_inv" id="id_prod_inv" hidden>
-                            <input autocomplete="off" type="text" id="producto" class="form-control" name="nom_productoSi"  placeholder="Nombre producto" autofocus>
+                            <input autocomplete="off" type="text" id="producto" class="form-control" name="nom_productoSi"  placeholder="Nombre producto" autofocus required>
                             <ul class="autocomplete-results bg-black text-light list-group" id="productos">
                             </ul>
                         </div>
@@ -21,34 +21,34 @@
                             <input type="text" class="form-control" name="necesario" id="necesita" readonly>
                         </div>
                         <div class="form-group col-md-4 p-3">
-                            <input type="number" autocomplete="off" class="form-control" id="cantidad_promesa" name="cantidad_promesa" placeholder="Cantidad promesa">
+                            <input type="number" autocomplete="off" class="form-control" id="cantidad_promesa" name="cantidad_promesa" placeholder="Cantidad promesa" required>
                         </div>
                         <div class="form-group col-md-4 p-3">
-                            <input type="number" autocomplete="off" class="form-control" id="cantidad_donar" name="cantidad_donar" placeholder="Cantidad donar">
+                            <input type="number" autocomplete="off" class="form-control" id="cantidad_donar" name="cantidad_donar" placeholder="Cantidad donar" required min="0" max="" defaultValue="0">
                         </div>
                         <div class="form-group col-md-4 p-3">
                             <input type="text" class="form-control" name="genero_producto" id="genero" placeholder="Genero del producto" readonly/>
                         </div>
                         <div class="form-group col-md-6">
                             <p class="form-control"><strong>Descripcion de la promesa</strong></p>
-                            <p class="form-control"><input type="checkbox" name="descripcion_cant_p" value="Kg">
-                            <label for="kg">Kg</label></p>
-                            <p class="form-control"><input type="checkbox" name="descripcion_cant_p" value="Litros">
-                            <label for="kg">Litros</label></p>
-                            <p class="form-control"><input type="checkbox" name="descripcion_cant_p" value="Piezas">
-                            <label for="kg">Piezas</label></p>
-                            <p class="form-control"><input type="checkbox" name="descripcion_cant_p" value="Efectivo">
-                            <label for="kg">Efectivo</label></p>
+                            <p class="form-control"><input type="radio" name="descripcion_cant_p" value="Kg" id="Kg" required>
+                            <label for="Kg">Kg</label></p>
+                            <p class="form-control"><input type="radio" name="descripcion_cant_p" value="Litros" id="Litros" required>
+                            <label for="Litros">Litros</label></p>
+                            <p class="form-control"><input type="radio" name="descripcion_cant_p" value="Piezas" id="Piezas" required>
+                            <label for="Piezas">Piezas</label></p>
+                            <p class="form-control"><input type="radio" name="descripcion_cant_p" value="Efectivo" id="Efectivo" required>
+                            <label for="Efectivo">Efectivo</label></p>
                         </div>
                         <div class="form-group col-md-6">
                             <p class="form-control"><strong>Descripcion de la donacion</strong></p>
-                            <p class="form-control"><input type="checkbox" name="descripcion_cant_d" value="Kg">
+                            <p class="form-control"><input type="radio" name="descripcion_cant_d" value="Kg" required>
                             <label for="kg">Kg</label></p>
-                            <p class="form-control"><input type="checkbox" name="descripcion_cant_d" value="Litros">
+                            <p class="form-control"><input type="radio" name="descripcion_cant_d" value="Litros" required>
                             <label for="kg">Litros</label></p>
-                            <p class="form-control"><input type="checkbox" name="descripcion_cant_d" value="Piezas">
+                            <p class="form-control"><input type="radio" name="descripcion_cant_d" value="Piezas" required>
                             <label for="kg">Piezas</label></p>
-                            <p class="form-control"><input type="checkbox" name="descripcion_cant_d" value="Efectivo">
+                            <p class="form-control"><input type="radio" name="descripcion_cant_d" value="Efectivo" required>
                             <label for="kg">Efectivo</label></p>
                         </div>
                         
@@ -57,24 +57,24 @@
                             <input hidden type="num" class="form-control" id="id" name="id_personaSi" placeholder="Id">
                         </div>
                         <div class="form-group col-md-6 p-2">
-                            <input type="text" class="form-control" autocomplete="off" name="nombresSi" id="search-persona" placeholder="Nombre sembrador">
+                            <input type="text" class="form-control" autocomplete="off" name="nombresSi" id="search-persona" placeholder="Nombre sembrador" required>
                             <ul class="autocomplete-results bg-black text-light list-group" id="users">
                             </ul>
                         </div>
                         <div class="form-group col-md-6 p-2">
-                            <input type="text" class="form-control" autocomplete="off" id="apellidoP" name="a_paterno" placeholder="Apellido paterno sembrador">
+                            <input type="text" class="form-control" autocomplete="off" id="apellidoP" name="a_paterno" placeholder="Apellido paterno sembrador" required>
                         </div>
                         <div class="form-group col-md-6 p-2">
-                            <input type="text" class="form-control" autocomplete="off" id="apellidoM" name="a_materno" placeholder="Apellido materno sembrador">
+                            <input type="text" class="form-control" autocomplete="off" id="apellidoM" name="a_materno" placeholder="Apellido materno sembrador" required>
                         </div>
                         <div class="form-group col-md-6 p-2">
-                            <input type="tel" class="form-control" autocomplete="off" name="num_tel" id="num_tel" placeholder="Telefono">
+                            <input type="tel" class="form-control" autocomplete="off" name="num_tel" id="num_tel" placeholder="Telefono" required>
                         </div>
                         <div class="form-group col-md-6 p-2">
-                            <input type="text" class="form-control"  name="nom_recibe" placeholder="Nombre quien recibe">
+                            <input type="text" class="form-control"  name="nom_recibe" placeholder="Nombre quien recibe" required>
                         </div>
                         <div class="form-group col-md-6 p-2">
-                            <input type="date" class="form-control" name="fecha_recibe">
+                            <input type="date" class="form-control" name="fecha_recibe" required>
                         </div>
                         <div class="form-group m-3" hidden>
                             <input type="checkbox" name="recibido" id="recibido" value="1">

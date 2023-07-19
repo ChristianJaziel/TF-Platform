@@ -9,7 +9,7 @@
                         <div class="row">
                         <div class="form-group col-md-6">
                             <input type="number" name="id_prod_inv" id="id_prod_inv" value="{{siembra.id_prod_inv}}" hidden>
-                            <input autocomplete="off" type="text" id="producto" class="form-control" name="nom_productoSi"  placeholder="Nombre producto" value="{{siembra.nom_productoSi}}" autofocus/>
+                            <input autocomplete="off" type="text" id="producto" class="form-control" name="nom_productoSi"  placeholder="Nombre producto" value="{{siembra.nom_productoSi}}" autofocus required/>
                             <ul class="autocomplete-results bg-black text-light list-group" id="productos">
                             </ul>
                         </div>
@@ -26,21 +26,21 @@
                             <input type="number" autocomplete="off" id="cantidad_promesa" class="form-control" name="cantidad_promesa" value="{{siembra.cantidad_promesa}}" placeholder="Cantidad promesa" readonly>
                         </div>
                         <div class="form-group col-md-4 p-3">
-                            <input type="number" autocomplete="off" id="cantidad_donar" class="form-control" name="cantidad_donar" placeholder="Cantidad a donar" value="{{siembra.cantidad_donar}}">
+                            <input type="number" autocomplete="off" id="cantidad_donar" class="form-control" name="cantidad_donar" placeholder="Cantidad a donar" value="{{siembra.cantidad_donar}}" required>
                         </div>
                         <div class="form-group col-md-4 p-3">
-                            <input type="text" class="form-control" name="genero_producto" id="genero" placeholder="Genero del producto" value="{{siembra.genero_producto}}"/>
+                            <input type="text" class="form-control" name="genero_producto" id="genero" placeholder="Genero del producto" value="{{siembra.genero_producto}}" readonly/>
                         </div>
                         <input type="text" name="descripcion_cant_p" id="" value="{{siembra.descripcion_cant_p}}" hidden>
                         <div class="form-group col-md-6">
                             <p class="form-control"><strong>Descripcion de la donacion</strong></p>
-                            <p class="form-control"><input type="checkbox" name="descripcion_cant_d" value="Kg">
+                            <p class="form-control"><input type="radio" name="descripcion_cant_d" value="Kg" required>
                             <label for="kg">Kg</label></p>
-                            <p class="form-control"><input type="checkbox" name="descripcion_cant_d" value="Litros">
+                            <p class="form-control"><input type="radio" name="descripcion_cant_d" value="Litros" required>
                             <label for="kg">Litros</label></p>
-                            <p class="form-control"><input type="checkbox" name="descripcion_cant_d" value="Piezas">
+                            <p class="form-control"><input type="radio" name="descripcion_cant_d" value="Piezas" required> 
                             <label for="kg">Piezas</label></p>
-                            <p class="form-control"><input type="checkbox" name="descripcion_cant_d" id="efectivo" value="Efectivo">
+                            <p class="form-control"><input type="radio" name="descripcion_cant_d" id="efectivo" value="Efectivo" required>
                             <label for="kg">Efectivo</label></p>
                         </div>
 
@@ -49,24 +49,24 @@
                             <input hidden type="num" class="form-control" id="id" name="id_personaSi" placeholder="Id" value="{{siembra.id_personaSi}}">
                         </div>
                         <div class="form-group col-md-6 p-2">
-                            <input type="text" class="form-control" autocomplete="off" name="nombresSi" id="search-persona" placeholder="Nombre sembrador" value="{{siembra.nombresSi}}">
+                            <input type="text" class="form-control" autocomplete="off" name="nombresSi" id="search-persona" placeholder="Nombre sembrador" value="{{siembra.nombresSi}}" required>
                             <ul class="autocomplete-results bg-black text-light list-group" id="users">
                             </ul>
                         </div>
                         <div class="form-group col-md-6 p-2">
-                            <input type="text" class="form-control" autocomplete="off" id="apellidoP" name="a_paterno" placeholder="Apellido paterno sembrador" value="{{siembra.a_paterno}}">
+                            <input type="text" class="form-control" autocomplete="off" id="apellidoP" name="a_paterno" placeholder="Apellido paterno sembrador" value="{{siembra.a_paterno}}" required>
                         </div>
                         <div class="form-group col-md-6 p-2">
-                            <input type="text" class="form-control" autocomplete="off" id="apellidoM" name="a_materno" placeholder="Apellido materno sembrador" value="{{siembra.a_materno}}">
+                            <input type="text" class="form-control" autocomplete="off" id="apellidoM" name="a_materno" placeholder="Apellido materno sembrador" value="{{siembra.a_materno}}" required>
                         </div>
                         <div class="form-group col-md-6 p-2">
-                            <input type="tel" class="form-control" autocomplete="off" name="num_tel" id="num_tel" placeholder="Telefono" value="{{siembra.num_tel}}">
+                            <input type="tel" class="form-control" autocomplete="off" name="num_tel" id="num_tel" placeholder="Telefono" value="{{siembra.num_tel}}" required>
                         </div>
                         <div class="form-group col-md-6 p-2">
-                            <input type="text" class="form-control"  name="nom_recibe" placeholder="Nombre quien recibe" value="">
+                            <input type="text" class="form-control"  name="nom_recibe" placeholder="Nombre quien recibe" value="" required>
                         </div>
                         <div class="form-group col-md-6 p-2">
-                            <input type="date" class="form-control" name="fecha_recibe" value="{{siembra.fecha_recibe}}">
+                            <input type="date" class="form-control" name="fecha_recibe" value="" required>
                         </div>
                         <div class="form-group m-3" hidden>
                             <input type="checkbox" name="recibido" id="recibido" value="1" >
