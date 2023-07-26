@@ -8,7 +8,7 @@
 
                     {{! Datos de la siembra }}
                         <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-outline col-md-6">
                             <input type="number" name="id_prod_inv" id="id_prod_inv" hidden>
                             <input autocomplete="off" type="text" id="producto" class="form-control" name="nom_productoSi"  placeholder="Nombre producto" autofocus required>
                             <ul class="autocomplete-results bg-black text-light list-group" id="productos">
@@ -22,9 +22,10 @@
                         </div>
                         <div class="form-group col-md-4 p-3">
                             <input type="number" autocomplete="off" class="form-control" id="cantidad_promesa" name="cantidad_promesa" placeholder="Cantidad promesa" required>
+                            <label for="cantidad_promesa" id="cantpr" style="border-color:red;" hidden>Debes de introducir una cantidad dentro del rango que se necesita</label>
                         </div>
                         <div class="form-group col-md-4 p-3">
-                            <input type="number" autocomplete="off" class="form-control" id="cantidad_donar" name="cantidad_donar" placeholder="Cantidad donar" required min="0" max="" defaultValue="0">
+                            <input type="number" autocomplete="off" class="form-control" id="cantidad_donar" name="cantidad_donar" placeholder="Cantidad donar" required value="0" max="" defaultValue="0">
                         </div>
                         <div class="form-group col-md-4 p-3">
                             <input type="text" class="form-control" name="genero_producto" id="genero" placeholder="Genero del producto" readonly/>
@@ -113,7 +114,8 @@
     let tel = "";
     let all = "";   
     var recibido=document.querySelector("input[id=recibido]");
-
+    var cantidadP_val;
+    var cantp = document.getElementById("cantidad_promesa");
 
     window.addEventListener('DOMContentLoaded', async()=>{
     const data = await loadUsers();
@@ -125,6 +127,26 @@
     //console.log(users);
     });
     
+    document.getElementById("cantidad_promesa").addEventListener("keyup", (e)=>{
+        if(e.target.value<=cantidadP_val && e.target.value>=0){
+             document.getElementById("cantidad_promesa").setAttribute("style","border-color: ");
+             document.getElementById("necesita").setAttribute("style","border-color: ");
+        }else{
+            document.getElementById("cantidad_promesa").setAttribute("style","border-color: red");
+            document.getElementById("necesita").setAttribute("style","border-color: orange");
+            document.getElementById("cantpr").setAttribute("hidden","false");
+        }
+        });
+
+    document.getElementById("cantidad_donar").addEventListener("keyup", async(e)=>{
+        let cantidadp = parseInt(cantp.value);
+        if(e.target.value<=cantidadp && e.target.value>=0){
+         cantp.setAttribute("style","border-color: ");
+        }else{
+            cantp.setAttribute("style","border-color: red");
+        }
+    });
+
     document.querySelector('#send').addEventListener('click', async()=>{
              if(document.querySelector('#cantidad_promesa').value===document.querySelector('#cantidad_donar').value){
                 recibido.checked=true;
@@ -217,7 +239,7 @@
                     idprodinv.value = prod.id_pro_inv; 
                     nombre_producto = nombreproducto;
                     producto.value = nombre_producto;
-                    
+                    cantidadP_val = (prod.cantidad_inicial - prod.cantidad_sembrada);
                     inputnecesita.value = (prod.cantidad_inicial - prod.cantidad_sembrada) +" "+ prod.descripcion_cant;
                     inputgenero.value = prod.genero; //con el puro mapeo se insertaba el valor dentro del input, no hacian falta las variables de arriba
                 }

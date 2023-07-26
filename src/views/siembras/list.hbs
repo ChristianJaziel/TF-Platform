@@ -1,8 +1,26 @@
 <div class="container-fluid p-4">
-    <div class="title text-center m-4 p-4"><h1>Siembras</h1></div>
+    <div class="title text-center m-4 p-4 fs-1"><h1>Siembras</h1></div>
     <div class="row ">
+        <form action="/inventario/busqueda" method="post">
+            <div class="input-group mx-auto w-50">
+            <div class="col-md-6 p-2"><input type="search" id="buscar" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" /></div>
+            <div class="col-md-4 p-2"><select class="form-select" aria-label="Default select example">
+            <option name="selector" selected >Tipo de busqueda</option>
+            <option name="selector" value="siembra">Siembras</option>
+            <option name="selector" value="persona">Personas</option>
+            <option name="selector" value="inventario">Inventario</option>
+            </select>
+            </div>
+            <div class="col-md-6 p-2">
+            <ul class="autocomplete-results bg-black text-light list-group " id="busqueda"></ul>
+            </div>
+            <div class="col-md-2 p-2"><button type="button" class="btn btn-outline-primary">Buscar</button></div>
+            </div>
+        </form>
+        
         {{#each siembra}}
             <div class="flex-column d-flex m-1 flex-md-row align-items-center justify-content-center" {{#if recibido }} style="background-color: greenyellow;" {{/if}}>
+            
                 <div class="container text-center row">
                     <table class="table row">
                         <thead class="flex-column">
@@ -67,4 +85,30 @@
     var anio = fechaOriginal.format("YYYY");
     fechalabel.innerHTML = dia+" de "+ mes + " del " + anio;
     
+    var inputB = document.getElementById("buscar");
+    var listaB = document.getElementById("busqueda");
+    var search=[];
+
+    window.addEventListener("DOMContentLoaded", async () =>{
+        const data = await loadSearch();
+        search = data;
+        console.log(search);
+    });
+    const loadSearch = async ()=>{
+       const response = await fetch('/inventario/buscar');
+       return await response.json();
+    }
+
+    const createBusquedaItems =search => search.map(searchi => `<a><li class=" form-control" style="cursor:pointer;">${searchi}</li></a>`).join(" ");
+
+    const renderSearch = (search) =>{
+        const itemsString = createBusquedaItems(search);
+        listaB.innerHTML = itemsString;
+    }
+
+    inputB.addEventListener("keyup", (event) => {
+        
+        const newSearch = search.filter(search => `${search.toLowerCase()}`.includes(inputB.value.toLowerCase()));
+        renderSearch(newSearch); 
+    });
 </script>

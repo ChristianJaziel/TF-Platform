@@ -17,7 +17,7 @@
                             <label for="">Se necesita</label>
                         </div>
                         <div class="col-md-5 form-group">
-                            <input type="text" class="form-control" name="" id="necesita" value="{{siembra.necesario}}" readonly/>
+                            <input type="text" class="form-control" name="" id="necesita" value="" readonly/>
                         </div>
                         <div class="form-group col-md-2 p-3">
                             <label for=""><strong>Cantidad prometida</strong></label>
@@ -105,7 +105,10 @@
     let tel = "";
     let all = "";   
     var recibido=document.querySelector('#recibido');
-    
+    var cantidadP_val;
+    var cantp = document.getElementById("cantidad_promesa");
+
+
     window.addEventListener('DOMContentLoaded', async()=>{
     const data = await loadUsers();
     users = data;
@@ -122,6 +125,18 @@
             recibido.value=0;
         }
     });
+    
+    document.getElementById("cantidad_donar").addEventListener("keyup", (e)=>{
+       let cantidadp = parseInt(cantp.value);
+        if(!(e.target.value<=cantidadp && e.target.value>=0)){
+            cantp.setAttribute("style","border-color: orange");
+            document.getElementById("cantidad_donar").setAttribute("style","border-color: red");
+        }else{
+            cantp.setAttribute("style","border-color: ");
+            document.getElementById("cantidad_donar").setAttribute("style","border-color: ");
+        }
+    });
+
 
     document.querySelector('#efectivo').addEventListener('change',function(){
         if(this.checked){
@@ -213,8 +228,9 @@
                     idprodinv.value = prod.id_pro_inv; 
                     nombre_producto = nombreproducto;
                     producto.value = nombre_producto;
+                    cantidadP_val = prod.cantidad_inicial;
                     cantidad_producto = cantidadnecesita;
-                    inputnecesita.value = cantidad_producto +" "+ prod.descripcion_cant;
+                    inputnecesita.value = (prod.cantidad_inicial - prod.cantidad_sembrada)+" "+ prod.descripcion_cant;
                     inputgenero.value = prod.genero;
                 }
             });

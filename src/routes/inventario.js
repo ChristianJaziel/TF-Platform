@@ -16,6 +16,18 @@ router.get('/all', async (req,res)=>{
     res.send(producto);
 });
 
+router.get('/buscar', async (req,res)=>{
+    let buscarpe = [];
+    let buscarpr = [];
+    buscarpr = await db.query('SELECT nombre_pro as Nombre_producto FROM inventario');
+    buscarpr = buscarpr.map(item => item.Nombre_producto);
+    buscarpe = await db.query('SELECT CONCAT(nombres_persona, " ",a_paterno , " ", a_materno) as Nombre_persona from personas');
+    buscarpe = buscarpe.map(item => item.Nombre_persona);
+    const busqueda = buscarpr.concat(buscarpe);
+    console.log(busqueda);
+    res.send(busqueda);
+});
+
 router.post('/add',async(req,res)=>{
     const {nombre_pro,cantidad_nec,cantidad_inicial,descripcion_cant,genero} = req.body;
     const newRegistro = {nombre_pro,cantidad_nec,cantidad_inicial,descripcion_cant,genero};

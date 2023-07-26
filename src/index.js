@@ -35,7 +35,6 @@ app.use('/registropersonas',require('./routes/registropersonas.js'));
 app.use('/siembras',require('./routes/siembras.js'));
 app.use('/inventario',require('./routes/inventario.js'));
 app.use(require('./routes/authentication.js'));
-app.use('/links',require('./routes/links.js'));
 //Publico
 app.use(express.static(path.join(__dirname, 'public')));
 
