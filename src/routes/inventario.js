@@ -28,6 +28,12 @@ router.get('/buscar', async (req,res)=>{
     res.send(busqueda);
 });
 
+router.post('/busqueda', async (req,res)=>{
+    const {buscar} = req.body;  
+    const {selector1} = req.body;
+    await console.log(JSON.stringify(buscar));
+});
+
 router.post('/add',async(req,res)=>{
     const {nombre_pro,cantidad_nec,cantidad_inicial,descripcion_cant,genero} = req.body;
     const newRegistro = {nombre_pro,cantidad_nec,cantidad_inicial,descripcion_cant,genero};

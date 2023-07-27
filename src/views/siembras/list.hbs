@@ -1,20 +1,22 @@
 <div class="container-fluid p-4">
     <div class="title text-center m-4 p-4 fs-1"><h1>Siembras</h1></div>
     <div class="row ">
-        <form action="/inventario/busqueda" method="post">
+        <form action="/inventario/busqueda" method="POST">
             <div class="input-group mx-auto w-50">
-            <div class="col-md-6 p-2"><input type="search" id="buscar" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" /></div>
-            <div class="col-md-4 p-2"><select class="form-select" aria-label="Default select example">
-            <option name="selector" selected >Tipo de busqueda</option>
-            <option name="selector" value="siembra">Siembras</option>
-            <option name="selector" value="persona">Personas</option>
-            <option name="selector" value="inventario">Inventario</option>
-            </select>
-            </div>
-            <div class="col-md-6 p-2">
-            <ul class="autocomplete-results bg-black text-light list-group " id="busqueda"></ul>
-            </div>
-            <div class="col-md-2 p-2"><button type="button" class="btn btn-outline-primary">Buscar</button></div>
+                <div class="col-md-6 p-2">
+                    <input type="search" name="buscar" id="buscar" class="form-control rounded" placeholder="Buscar" aria-label="Search" aria-describedby="search-addon" />
+                    <ul class="autocomplete-results bg-black text-light list-group " id="busqueda"></ul></div>
+                <div class="col-md-4 p-2">
+                    <select name="selector1" class="form-select" aria-label="Default select example">
+                        <option selected >Tipo de busqueda</option>
+                        <option value="siembra">Siembras</option>
+                        <option value="persona">Personas</option>
+                        <option value="inventario">Inventario</option>
+                    </select>
+                </div>
+                <div class="col-md-2 p-2">
+                    <button class="btn btn-outline-primary">Buscar</button>
+                </div>
             </div>
         </form>
         
@@ -92,7 +94,6 @@
     window.addEventListener("DOMContentLoaded", async () =>{
         const data = await loadSearch();
         search = data;
-        console.log(search);
     });
     const loadSearch = async ()=>{
        const response = await fetch('/inventario/buscar');
@@ -110,5 +111,17 @@
         
         const newSearch = search.filter(search => `${search.toLowerCase()}`.includes(inputB.value.toLowerCase()));
         renderSearch(newSearch); 
+    });
+
+    listaB.addEventListener("click", async(e)=>{
+        if(e.target && e.target.nodeName == "LI"){
+            let loadsearch = await search.map(look =>{
+                let seek = look;
+                if(seek == e.target.innerHTML){
+                    inputB.value = seek;
+                }
+            });
+            renderSearch([]);
+        }
     });
 </script>
