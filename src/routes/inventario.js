@@ -11,6 +11,11 @@ router.get('/add',async (req,res)=>{
     res.render('inventario/add');
 });
 
+router.get('/allpr', async(req, res)=>{
+    const producto = 
+    res.send(producto);
+});
+
 router.get('/all', async (req,res)=>{
     const producto = await db.query('SELECT * FROM inventario WHERE cantidad_sembrada < cantidad_inicial');
     res.send(producto);
@@ -24,14 +29,32 @@ router.get('/buscar', async (req,res)=>{
     buscarpe = await db.query('SELECT CONCAT(nombres_persona, " ",a_paterno , " ", a_materno) as Nombre_persona from personas');
     buscarpe = buscarpe.map(item => item.Nombre_persona);
     const busqueda = buscarpr.concat(buscarpe);
-    console.log(busqueda);
     res.send(busqueda);
 });
 
 router.post('/busqueda', async (req,res)=>{
-    const {buscar} = req.body;  
-    const {selector1} = req.body;
-    await console.log(JSON.stringify(buscar));
+    const producto = await db.query('SELECT * FROM inventario');
+    const personas = await db.query('SELECT * FROM personas');
+    const {buscar} = req.body;
+    const {selector} = req.body;  
+    let buscarobj;
+    let obj="";
+    let seekobj;
+    seekobj = producto.filter(prod =>{
+        if(prod.nombre_pro === buscar){obj = "producto"};
+    } );
+    seekobj = personas.filter(pers =>{
+        const nombres_persona = pers.nombres_persona + " " + pers.a_paterno + " " + pers.a_materno;
+        if(nombres_persona === buscar){obj = "persona"};
+    });
+    console.log(obj);
+    if(selector == "siembra" && obj == "producto"){
+        buscarobj = await db.query('SELECT * from siembra where nom_productoSi = ?',[buscar]);
+        res.render('siembras/list', {siembra : buscarobj});
+    }else if(selector == "siembra" && obj == "persona"){
+        buscarobj = await db.query('SELECT * from siembra where CONCAT(nombres_persona, " ", a_paterno, " ", a_materno) = ?',[buscar]);
+        res.render('siembras/list', {siembra : buscarobj});
+    }
 });
 
 router.post('/add',async(req,res)=>{

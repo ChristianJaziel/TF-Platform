@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
 const { engine } = require('express-handlebars');
 const path = require('path');
 //inicializaciones
@@ -22,6 +23,8 @@ app.set('view engine', 'hbs');
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 //Variables globales
 app.use((req, res, next)=>{

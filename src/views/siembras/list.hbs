@@ -4,10 +4,10 @@
         <form action="/inventario/busqueda" method="POST">
             <div class="input-group mx-auto w-50">
                 <div class="col-md-6 p-2">
-                    <input type="search" name="buscar" id="buscar" class="form-control rounded" placeholder="Buscar" aria-label="Search" aria-describedby="search-addon" />
+                    <input type="search" name="buscar" id="buscar" class="form-control rounded" placeholder="Buscar" aria-label="Search" aria-describedby="search-addon" autocomplete="off"/>
                     <ul class="autocomplete-results bg-black text-light list-group " id="busqueda"></ul></div>
                 <div class="col-md-4 p-2">
-                    <select name="selector1" class="form-select" aria-label="Default select example">
+                    <select name="selector" class="form-select" aria-label="Default select example">
                         <option selected >Tipo de busqueda</option>
                         <option value="siembra">Siembras</option>
                         <option value="persona">Personas</option>
@@ -108,9 +108,12 @@
     }
 
     inputB.addEventListener("keyup", (event) => {
-        
+        if(event.target.value==="" || event.target.value== " "){
+            renderSearch([]);
+        }else{
         const newSearch = search.filter(search => `${search.toLowerCase()}`.includes(inputB.value.toLowerCase()));
         renderSearch(newSearch); 
+        }
     });
 
     listaB.addEventListener("click", async(e)=>{
